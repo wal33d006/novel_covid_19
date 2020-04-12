@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:novel_covid_19/views/personal_info.dart';
 import 'country_list.dart';
 import 'global_info.dart';
 
@@ -13,6 +14,7 @@ class _HomePageMasterState extends State<HomePageMaster> {
   List<Widget> _widgets = <Widget> [
     GlobalInfoPage(),
     CountryListPage(),
+    PersonalInfoScreen(),
   ];
 
   @override
@@ -34,6 +36,10 @@ class _HomePageMasterState extends State<HomePageMaster> {
           BottomNavigationBarItem(
               icon: Icon(Icons.list),
               title: Text('Countries')
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.info),
+              title: Text('About')
           ),
         ],
       ),
