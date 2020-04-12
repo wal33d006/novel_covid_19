@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'country_list.dart';
 import 'global_info.dart';
 
@@ -9,7 +8,6 @@ class HomePageMaster extends StatefulWidget {
 }
 
 class _HomePageMasterState extends State<HomePageMaster> {
-
   int _currentIndex = 0;
 
   List<Widget> _widgets = <Widget> [

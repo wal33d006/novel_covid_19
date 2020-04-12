@@ -15,13 +15,12 @@ class CountryDetailPage extends StatefulWidget {
 }
 
 class _CountryDetailPageState extends State<CountryDetailPage> {
-  CovidApi api = CovidApi();
-  bool _isLoading = false;
-
-  double deathPercentage;
-  double recoveryPercentage;
-  double activePercentage;
   Country _countryInfo;
+  double deathPercentage;
+  double activePercentage;
+  bool _isLoading = false;
+  CovidApi api = CovidApi();
+  double recoveryPercentage;
 
   @override
   void initState() {

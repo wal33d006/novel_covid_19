@@ -9,7 +9,6 @@ class ThemeSwitch extends StatefulWidget {
 }
 
 class _ThemeSwitchState extends State<ThemeSwitch> {
-
   var _darkTheme = true;
 
   void onThemeChanged(bool value, ThemeNotifier themeNotifier) async {

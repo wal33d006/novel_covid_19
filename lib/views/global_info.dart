@@ -14,13 +14,12 @@ class GlobalInfoPage extends StatefulWidget {
 }
 
 class _GlobalInfoPageState extends State<GlobalInfoPage> {
-  CovidApi api = CovidApi();
   GlobalInfo _stats;
-  bool _isLoading = false;
-
   double deathPercentage;
-  double recoveryPercentage;
   double activePercentage;
+  bool _isLoading = false;
+  CovidApi api = CovidApi();
+  double recoveryPercentage;
 
   @override
   void initState() {
