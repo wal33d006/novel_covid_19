@@ -1,8 +1,5 @@
-import 'dart:convert';
-
 import 'package:flutter_test/flutter_test.dart';
-import 'package:novel_covid_19/api/covid_api.dart';
-import 'package:novel_covid_19/global.dart';
+import 'package:novel_covid_19/controllers/covid_api.dart';
 import 'package:novel_covid_19/models/global_info_model.dart';
 
 void main() {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:novel_covid_19/screens/home_master.dart';
+import 'package:novel_covid_19/views/home_master.dart';
 import 'package:provider/provider.dart';
 
 final darkTheme = ThemeData(
