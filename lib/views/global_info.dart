@@ -58,7 +58,7 @@ class _GlobalInfoPageState extends State<GlobalInfoPage> {
                       ),
                       StatisticCard(
                         color: Colors.green,
-                        text: 'Total reconvered',
+                        text: 'Total recovered',
                         icon: Icons.whatshot,
                         stats: _stats.recovered,
                       ),
