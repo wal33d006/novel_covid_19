@@ -11,11 +11,11 @@ class CountryListPage extends StatefulWidget {
 }
 
 class _CountryListPageState extends State<CountryListPage> {
-  CovidApi api = CovidApi();
-  List<Country> _countries = List<Country>();
   bool _isLoading = false;
+  CovidApi api = CovidApi();
   var items = List<Country>();
-
+  var _focusNode = FocusNode();
+  List<Country> _countries = List<Country>();
   var _controller = TextEditingController();
 
   @override
@@ -73,9 +73,13 @@ class _CountryListPageState extends State<CountryListPage> {
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: Card(
                         child: TextFormField(
+                          focusNode: _focusNode,
                           controller: _controller,
                           decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.search),
+                              prefixIcon: Icon(
+                                Icons.search,
+                                color: Theme.of(context).accentColor,
+                              ),
                               border: OutlineInputBorder(),
                               focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
@@ -102,6 +106,7 @@ class _CountryListPageState extends State<CountryListPage> {
                                 onTap: () {
                                   _controller.clear();
                                   filterSearchResults('');
+                                  _focusNode.unfocus();
                                   Navigator.of(context).push(
                                     MaterialPageRoute(
                                       builder: (context) => CountryDetailPage(
