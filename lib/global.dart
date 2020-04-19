@@ -13,3 +13,7 @@ abstract class UrlConstants {
   static const String globalInfo = '$baseUrl/all';
   static const String allCountries = '$baseUrl/countries';
 }
+
+abstract class SharedPreferencesKeys {
+  static const String isDarkTheme = 'isDarkTheme';
+}

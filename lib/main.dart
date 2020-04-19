@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:novel_covid_19/global.dart';
 import 'package:novel_covid_19/views/home_master.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final darkTheme = ThemeData(
   primarySwatch: Colors.grey,
@@ -35,12 +37,23 @@ class ThemeNotifier with ChangeNotifier {
   }
 }
 
-void main() => runApp(
-  ChangeNotifierProvider<ThemeNotifier>(
-    create: (_) => ThemeNotifier(lightTheme),
-    child: MyApp(),
-  ),
-);
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  var isDarkTheme = prefs.getBool(SharedPreferencesKeys.isDarkTheme);
+  ThemeData theme;
+  if(isDarkTheme != null) {
+    theme = isDarkTheme ? darkTheme : lightTheme;
+  } else {
+    theme = lightTheme;
+  }
+  runApp(
+    ChangeNotifierProvider<ThemeNotifier>(
+      create: (_) => ThemeNotifier(theme),
+      child: MyApp(),
+    ),
+  );
+}
 
 class MyApp extends StatelessWidget {
   @override

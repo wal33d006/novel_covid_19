@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:novel_covid_19/global.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../main.dart';
 
@@ -15,6 +17,8 @@ class _ThemeSwitchState extends State<ThemeSwitch> {
     (value)
         ? themeNotifier.setTheme(darkTheme)
         : themeNotifier.setTheme(lightTheme);
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool(SharedPreferencesKeys.isDarkTheme, value);
   }
 
   @override
