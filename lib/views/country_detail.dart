@@ -5,6 +5,8 @@ import 'package:novel_covid_19/custom_widgets/theme_switch.dart';
 import 'package:novel_covid_19/custom_widgets/virus_loader.dart';
 import 'package:novel_covid_19/models/country_model.dart';
 
+import '../global.dart';
+
 class CountryDetailPage extends StatefulWidget {
   final String countryName;
 
@@ -19,12 +21,15 @@ class _CountryDetailPageState extends State<CountryDetailPage> {
   double deathPercentage;
   double activePercentage;
   bool _isLoading = false;
+  bool _isHome = false;
   CovidApi api = CovidApi();
   double recoveryPercentage;
+  bool _isSettingCountry = false;
 
   @override
   void initState() {
     super.initState();
+    _initiateSharedPreferences();
     _fetchCountryDetails();
   }
 
@@ -54,6 +59,52 @@ class _CountryDetailPageState extends State<CountryDetailPage> {
                 ? buildErrorMessage()
                 : ListView(
                     children: <Widget>[
+                      if (!_isHome)
+                        Row(
+                          children: <Widget>[
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: _isSettingCountry
+                                    ? null
+                                    : () async {
+                                        setState(() {
+                                          _isSettingCountry = true;
+                                        });
+                                        await mySharedPreferences
+                                            .setHomeCountry(HomeCountry(
+                                          name: _countryInfo.country,
+                                          cases: _countryInfo.cases.toString(),
+                                          deaths:
+                                              _countryInfo.deaths.toString(),
+                                        ));
+                                        setState(() {
+                                          _isHome = true;
+                                          _isSettingCountry = false;
+                                        });
+                                      },
+                                child: Container(
+                                  padding: const EdgeInsets.all(4.0),
+                                  margin: const EdgeInsets.all(16.0),
+                                  child: Text(
+                                    _isSettingCountry
+                                        ? '...'
+                                        : 'Set as Home country',
+                                    textAlign: TextAlign.center,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .subtitle
+                                        .copyWith(
+                                            color:
+                                                Theme.of(context).primaryColor),
+                                  ),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      color: Theme.of(context).accentColor),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
                       StatisticCard(
                         color: Colors.orange,
                         text: 'Total cases',
@@ -154,5 +205,13 @@ class _CountryDetailPageState extends State<CountryDetailPage> {
     } finally {
       setState(() => _isLoading = false);
     }
+  }
+
+  void _initiateSharedPreferences() async {
+    var list = await mySharedPreferences.fetchHomeCountry();
+    if (list != null && list[0].compareTo(widget.countryName) == 0)
+      setState(() {
+        _isHome = true;
+      });
   }
 }

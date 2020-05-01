@@ -3,10 +3,10 @@ import 'package:novel_covid_19/controllers/covid_api.dart';
 import 'package:novel_covid_19/custom_widgets/statistic_card.dart';
 import 'package:novel_covid_19/custom_widgets/theme_switch.dart';
 import 'package:novel_covid_19/custom_widgets/virus_loader.dart';
+import 'package:novel_covid_19/global.dart';
+import 'package:novel_covid_19/models/country_model.dart';
 import 'package:novel_covid_19/models/global_info_model.dart';
-import 'package:provider/provider.dart';
-
-import '../main.dart';
+import 'package:novel_covid_19/views/country_detail.dart';
 
 class GlobalInfoPage extends StatefulWidget {
   @override
@@ -21,9 +21,12 @@ class _GlobalInfoPageState extends State<GlobalInfoPage> {
   CovidApi api = CovidApi();
   double recoveryPercentage;
 
+  HomeCountry _homeCountry;
+
   @override
   void initState() {
     super.initState();
+    _fetchHomeCountry();
     _fetchGlobalStats();
   }
 
@@ -50,6 +53,27 @@ class _GlobalInfoPageState extends State<GlobalInfoPage> {
                 ? buildErrorMessage()
                 : ListView(
                     children: <Widget>[
+                      if (_homeCountry != null)
+                        ListTile(
+                          leading: CircleAvatar(
+                            child: Icon(
+                              Icons.home,
+                              color: Theme.of(context).accentColor,
+                            ),
+                          ),
+                          title: Text(_homeCountry.name),
+                          subtitle: Text(
+                            _homeCountry.cases + '--' + _homeCountry.deaths,
+                          ),
+                          trailing: Icon(Icons.arrow_right),
+                          onTap: () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => CountryDetailPage(
+                                countryName: _homeCountry.name,
+                              ),
+                            ),
+                          ),
+                        ),
                       StatisticCard(
                         color: Colors.orange,
                         text: 'Total cases',
@@ -131,6 +155,19 @@ class _GlobalInfoPageState extends State<GlobalInfoPage> {
       setState(() => _stats = null);
     } finally {
       setState(() => _isLoading = false);
+    }
+  }
+
+  void _fetchHomeCountry() async {
+    var list = await mySharedPreferences.fetchHomeCountry();
+    if (list != null) {
+      setState(() {
+        _homeCountry = HomeCountry(
+          name: list[0],
+          cases: list[1],
+          deaths: list[2],
+        );
+      });
     }
   }
 }

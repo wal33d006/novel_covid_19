@@ -58,3 +58,15 @@ class Country {
     return data;
   }
 }
+
+class HomeCountry {
+  final String name;
+  final String cases;
+  final String deaths;
+
+  HomeCountry({
+    this.name,
+    this.cases,
+    this.deaths,
+  });
+}

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:novel_covid_19/controllers/covid_api.dart';
 import 'package:novel_covid_19/custom_widgets/theme_switch.dart';
 import 'package:novel_covid_19/custom_widgets/virus_loader.dart';
+import 'package:novel_covid_19/global.dart';
 import 'package:novel_covid_19/models/country_model.dart';
 import 'country_detail.dart';
 
@@ -17,6 +18,8 @@ class _CountryListPageState extends State<CountryListPage> {
   var _focusNode = FocusNode();
   List<Country> _countries = List<Country>();
   var _controller = TextEditingController();
+
+  HomeCountry _homeCountry;
 
   @override
   void initState() {
@@ -114,7 +117,19 @@ class _CountryListPageState extends State<CountryListPage> {
                                     ),
                                   );
                                 },
-                                title: Text(country.country),
+                                title: Row(
+                                  children: <Widget>[
+                                    Text(country.country),
+                                    if (_homeCountry != null &&
+                                        _homeCountry.name
+                                                .compareTo(country.country) ==
+                                            0)
+                                      Icon(
+                                        Icons.home,
+                                        size: 16.0,
+                                      )
+                                  ],
+                                ),
                                 subtitle:
                                     Text('Cases: ' + country.cases.toString()),
                                 trailing: Icon(Icons.arrow_right),
@@ -141,10 +156,19 @@ class _CountryListPageState extends State<CountryListPage> {
   void _fetchCountries() async {
     try {
       setState(() => _isLoading = true);
+      var list = await mySharedPreferences.fetchHomeCountry();
       var countries = await api.getAllCountriesInfo();
       setState(() {
         _countries = countries;
         items.addAll(_countries);
+        if (list != null)
+          setState(() {
+            _homeCountry = HomeCountry(
+              name: list[0],
+              cases: list[1],
+              deaths: list[2],
+            );
+          });
       });
     } catch (ex) {
       setState(() => _countries = null);
