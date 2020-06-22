@@ -37,7 +37,7 @@ jobs:
       - run: flutter build web --release
       
       # Copy the contents of build/web to the public folder of Firebase
-      - run: cp -R build/web/*
+      - run: cp -R build/web/* public/
       
       # Using Firebase Actions to deploy to our Firebase Hosting
       - uses: w9jds/firebase-action@master
