@@ -1,0 +1,48 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    # Job consists of instructions that you want to trigger
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+
+      # Checkout our code
+      - uses: actions/checkout@v1
+
+      # Switching to Flutter dev branch
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: 'dev'
+
+      # Enabling Flutter Web
+      - run: flutter config --enable-web
+      
+      # Get the latst dependencies
+      - run: flutter pub get
+      
+      # Build our 
+      - run: flutter build web --release
+      
+      # Copy the contents of build/web to the public folder of Firebase
+      - run: cp -R build/web/* public/
+      
+      # Using Firebase Actions to deploy to our Firebase Hosting
+      - uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.firebase_key }}
+          # This is where our stored secret will come in use
