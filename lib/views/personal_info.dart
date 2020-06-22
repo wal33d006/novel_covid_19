@@ -27,7 +27,7 @@ class PersonalInfoScreen extends StatelessWidget {
                       child: CircleAvatar(
                         radius: 90.0,
                         backgroundImage: NetworkImage(
-                            'https://media-exp1.licdn.com/dms/image/C4E03AQG7du-pU1O8kw/profile-displayphoto-shrink_200_200/0?e=1592438400&v=beta&t=GHaowcIAB7eDs5TlWiTKUqr1EXo_rBM1AsZh85AFcJg'),
+                            'https://media-exp1.licdn.com/dms/image/C4D03AQEH0_jzG4jFYw/profile-displayphoto-shrink_400_400/0?e=1598486400&v=beta&t=UxrC3edOPjMMLVmoK6wRyaGUbm4p-CKFmYBobjaw4yg'),
                       ),
                     ),
                     Padding(
