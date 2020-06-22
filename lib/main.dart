@@ -61,7 +61,7 @@ class MyApp extends StatelessWidget {
     final themeNotifier = Provider.of<ThemeNotifier>(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Novel Covid-19 Tracker',
       theme: themeNotifier.getTheme(),
       home: HomePageMaster(),
     );
