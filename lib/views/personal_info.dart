@@ -1,17 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:novel_covid_19/custom_widgets/theme_switch.dart';
 
 class PersonalInfoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'About',
-          style: TextStyle(color: Theme.of(context).accentColor),
-        ),
-        actions: <Widget>[ThemeSwitch()],
-      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -27,14 +19,17 @@ class PersonalInfoScreen extends StatelessWidget {
                       child: CircleAvatar(
                         radius: 90.0,
                         backgroundImage: NetworkImage(
-                            'https://media-exp1.licdn.com/dms/image/C4D03AQEH0_jzG4jFYw/profile-displayphoto-shrink_400_400/0?e=1598486400&v=beta&t=UxrC3edOPjMMLVmoK6wRyaGUbm4p-CKFmYBobjaw4yg'),
+                            'https://media-exp1.licdn.com/dms/image/C4D03AQEF0bDkllWyAQ/profile-displayphoto-shrink_400_400/0?e=1602115200&v=beta&t=FvkFAnHPiE2ipkx2Qw9OE-lo8PpW7K2Y-T4xenUN5sw'),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0),
                       child: Text(
                         'Waleed Arshad',
-                        style: Theme.of(context).textTheme.headline.copyWith(color: Theme.of(context).accentColor),
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline
+                            .copyWith(color: Theme.of(context).accentColor),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -45,20 +40,22 @@ class PersonalInfoScreen extends StatelessWidget {
                 ),
               ),
             ),
-            Column(
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text('Built with '),
-                    Icon(
-                      Icons.favorite,
-                      color: Colors.blue,
-                    ),
-                    Text(' in Flutter')
-                  ],
-                ),
-              ],
+            SafeArea(
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text('Built with '),
+                      Icon(
+                        Icons.favorite,
+                        color: Colors.blue,
+                      ),
+                      Text(' in Flutter')
+                    ],
+                  ),
+                ],
+              ),
             ),
           ],
         ),

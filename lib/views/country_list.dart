@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:novel_covid_19/controllers/covid_api.dart';
-import 'package:novel_covid_19/custom_widgets/theme_switch.dart';
 import 'package:novel_covid_19/custom_widgets/virus_loader.dart';
 import 'package:novel_covid_19/global.dart';
 import 'package:novel_covid_19/models/country_model.dart';
@@ -53,19 +52,6 @@ class _CountryListPageState extends State<CountryListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Countries',
-          style: TextStyle(color: Theme.of(context).accentColor),
-        ),
-        leading: Icon(
-          Icons.public,
-          color: Theme.of(context).accentColor,
-        ),
-        actions: <Widget>[
-          ThemeSwitch(),
-        ],
-      ),
       body: _isLoading
           ? VirusLoader()
           : _countries == null

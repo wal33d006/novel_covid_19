@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:novel_covid_19/controllers/covid_api.dart';
 import 'package:novel_covid_19/custom_widgets/statistic_card.dart';
-import 'package:novel_covid_19/custom_widgets/theme_switch.dart';
 import 'package:novel_covid_19/custom_widgets/virus_loader.dart';
 import 'package:novel_covid_19/global.dart';
 import 'package:novel_covid_19/models/country_model.dart';
@@ -33,100 +32,85 @@ class _GlobalInfoPageState extends State<GlobalInfoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'COVID-19 stats',
-          style: TextStyle(color: Theme.of(context).accentColor),
-        ),
-        leading: Icon(
-          Icons.public,
-          color: Theme.of(context).accentColor,
-        ),
-        actions: <Widget>[
-          ThemeSwitch(),
-        ],
-      ),
-      body: SafeArea(
-        child: _isLoading
-            ? VirusLoader()
-            : _stats == null
-                ? buildErrorMessage()
-                : ListView(
-                    children: <Widget>[
-                      if (_homeCountry != null)
-                        ListTile(
-                          leading: CircleAvatar(
-                            child: Icon(
-                              Icons.home,
-                              color: Theme.of(context).accentColor,
-                            ),
-                          ),
-                          title: Text(_homeCountry.name),
-                          subtitle: Text(
-                            _homeCountry.cases + '--' + _homeCountry.deaths,
-                          ),
-                          trailing: Icon(Icons.arrow_right),
-                          onTap: () => Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => CountryDetailPage(
-                                countryName: _homeCountry.name,
-                              ),
-                            ),
+      body: _isLoading
+          ? VirusLoader()
+          : _stats == null
+              ? buildErrorMessage()
+              : ListView(
+                  children: <Widget>[
+                    if (_homeCountry != null)
+                      ListTile(
+                        leading: CircleAvatar(
+                          child: Icon(
+                            Icons.home,
+                            color: Theme.of(context).accentColor,
                           ),
                         ),
-                      StatisticCard(
-                        color: Colors.orange,
-                        text: 'Total cases',
-                        icon: Icons.timeline,
-                        stats: _stats.cases,
-                      ),
-                      StatisticCard(
-                        color: Colors.green,
-                        text: 'Total recovered',
-                        icon: Icons.whatshot,
-                        stats: _stats.recovered,
-                      ),
-                      StatisticCard(
-                        color: Colors.red,
-                        text: 'Total deaths',
-                        icon: Icons.airline_seat_individual_suite,
-                        stats: _stats.deaths,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Card(
-                          elevation: 4.0,
-                          child: ListTile(
-                            leading: Icon(Icons.sentiment_very_dissatisfied),
-                            title: Text('Death percentage'),
-                            trailing: Text(
-                              deathPercentage.toStringAsFixed(2) + ' %',
-                              style: TextStyle(
-                                  color: Theme.of(context).accentColor,
-                                  fontWeight: FontWeight.bold),
+                        title: Text(_homeCountry.name),
+                        subtitle: Text(
+                          _homeCountry.cases + '--' + _homeCountry.deaths,
+                        ),
+                        trailing: Icon(Icons.arrow_right),
+                        onTap: () => Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => CountryDetailPage(
+                              countryName: _homeCountry.name,
                             ),
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Card(
-                          elevation: 4.0,
-                          child: ListTile(
-                            leading: Icon(Icons.sentiment_very_satisfied),
-                            title: Text('Recovery percentage'),
-                            trailing: Text(
-                              recoveryPercentage.toStringAsFixed(2) + ' %',
-                              style: TextStyle(
-                                  color: Theme.of(context).accentColor,
-                                  fontWeight: FontWeight.bold),
-                            ),
+                    StatisticCard(
+                      color: Colors.orange,
+                      text: 'Total cases',
+                      icon: Icons.timeline,
+                      stats: _stats.cases,
+                    ),
+                    StatisticCard(
+                      color: Colors.green,
+                      text: 'Total recovered',
+                      icon: Icons.whatshot,
+                      stats: _stats.recovered,
+                    ),
+                    StatisticCard(
+                      color: Colors.red,
+                      text: 'Total deaths',
+                      icon: Icons.airline_seat_individual_suite,
+                      stats: _stats.deaths,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Card(
+                        elevation: 4.0,
+                        child: ListTile(
+                          leading: Icon(Icons.sentiment_very_dissatisfied),
+                          title: Text('Death percentage'),
+                          trailing: Text(
+                            deathPercentage.toStringAsFixed(2) + ' %',
+                            style: TextStyle(
+                                color: Theme.of(context).accentColor,
+                                fontWeight: FontWeight.bold),
                           ),
                         ),
-                      )
-                    ],
-                  ),
-      ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Card(
+                        elevation: 4.0,
+                        child: ListTile(
+                          leading: Icon(Icons.sentiment_very_satisfied),
+                          title: Text('Recovery percentage'),
+                          trailing: Text(
+                            recoveryPercentage.toStringAsFixed(2) + ' %',
+                            style: TextStyle(
+                                color: Theme.of(context).accentColor,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
     );
   }
 
