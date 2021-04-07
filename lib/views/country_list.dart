@@ -148,7 +148,7 @@ class _CountryListPageState extends State<CountryListPage> {
       setState(() {
         _countries = countries;
         items.addAll(_countries!);
-        if (list!.isNotEmpty)
+        if (list != null)
           setState(() {
             _homeCountry = HomeCountry(
               name: list[0],
