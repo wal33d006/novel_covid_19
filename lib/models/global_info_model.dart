@@ -1,7 +1,7 @@
 class GlobalInfo {
-  int cases;
-  int deaths;
-  int recovered;
+  int? cases;
+  int? deaths;
+  int? recovered;
 
   GlobalInfo({this.cases, this.deaths, this.recovered});
 

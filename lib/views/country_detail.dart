@@ -10,20 +10,20 @@ import '../global.dart';
 class CountryDetailPage extends StatefulWidget {
   final String countryName;
 
-  CountryDetailPage({@required this.countryName});
+  CountryDetailPage({required this.countryName});
 
   @override
   _CountryDetailPageState createState() => _CountryDetailPageState();
 }
 
 class _CountryDetailPageState extends State<CountryDetailPage> {
-  Country _countryInfo;
-  double deathPercentage;
-  double activePercentage;
+  Country? _countryInfo;
+  double? deathPercentage;
+  double? activePercentage;
   bool _isLoading = false;
   bool _isHome = false;
   CovidApi api = CovidApi();
-  double recoveryPercentage;
+  double? recoveryPercentage;
   bool _isSettingCountry = false;
 
   @override
@@ -72,10 +72,11 @@ class _CountryDetailPageState extends State<CountryDetailPage> {
                                         });
                                         await mySharedPreferences
                                             .setHomeCountry(HomeCountry(
-                                          name: _countryInfo.country,
-                                          cases: _countryInfo.cases.toString(),
-                                          deaths:
-                                              _countryInfo.deaths.toString(),
+                                          name: (_countryInfo!.country)!,
+                                          cases:
+                                              (_countryInfo!.cases)!.toString(),
+                                          deaths: (_countryInfo!.deaths)!
+                                              .toString(),
                                         ));
                                         setState(() {
                                           _isHome = true;
@@ -92,8 +93,8 @@ class _CountryDetailPageState extends State<CountryDetailPage> {
                                     textAlign: TextAlign.center,
                                     style: Theme.of(context)
                                         .textTheme
-                                        .subtitle
-                                        .copyWith(
+                                        .subtitle2
+                                        ?.copyWith(
                                             color:
                                                 Theme.of(context).primaryColor),
                                   ),
@@ -109,37 +110,37 @@ class _CountryDetailPageState extends State<CountryDetailPage> {
                         color: Colors.orange,
                         text: 'Total cases',
                         icon: Icons.timeline,
-                        stats: _countryInfo.cases,
+                        stats: (_countryInfo!.cases)!,
                       ),
                       StatisticCard(
                         color: Colors.green,
                         text: 'Total recovered',
                         icon: Icons.verified_user,
-                        stats: _countryInfo.recovered,
+                        stats: (_countryInfo!.recovered)!,
                       ),
                       StatisticCard(
                         color: Colors.blue,
                         text: 'Active cases',
                         icon: Icons.whatshot,
-                        stats: _countryInfo.active,
+                        stats: (_countryInfo!.active)!,
                       ),
                       StatisticCard(
                         color: Colors.black,
                         text: 'Critical cases',
                         icon: Icons.battery_alert,
-                        stats: _countryInfo.critical,
+                        stats: (_countryInfo!.critical)!,
                       ),
                       StatisticCard(
                         color: Colors.blueGrey,
                         text: 'Total tests',
                         icon: Icons.youtube_searched_for,
-                        stats: _countryInfo.totalTests,
+                        stats: (_countryInfo!.totalTests)!,
                       ),
                       StatisticCard(
                         color: Colors.red,
                         text: 'Total deaths',
                         icon: Icons.airline_seat_individual_suite,
-                        stats: _countryInfo.deaths,
+                        stats: (_countryInfo!.deaths)!,
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -149,7 +150,7 @@ class _CountryDetailPageState extends State<CountryDetailPage> {
                             leading: Icon(Icons.sentiment_very_dissatisfied),
                             title: Text('Death percentage'),
                             trailing: Text(
-                              deathPercentage.toStringAsFixed(2) + ' %',
+                              deathPercentage!.toStringAsFixed(2) + ' %',
                               style: TextStyle(
                                   color: Theme.of(context).accentColor,
                                   fontWeight: FontWeight.bold),
@@ -165,7 +166,7 @@ class _CountryDetailPageState extends State<CountryDetailPage> {
                             leading: Icon(Icons.sentiment_very_satisfied),
                             title: Text('Recovery percentage'),
                             trailing: Text(
-                              recoveryPercentage.toStringAsFixed(2) + ' %',
+                              recoveryPercentage!.toStringAsFixed(2) + ' %',
                               style: TextStyle(
                                   color: Theme.of(context).accentColor,
                                   fontWeight: FontWeight.bold),
@@ -183,7 +184,7 @@ class _CountryDetailPageState extends State<CountryDetailPage> {
     return Center(
       child: Text(
         'Unable to fetch data',
-        style: Theme.of(context).textTheme.title.copyWith(color: Colors.grey),
+        style: Theme.of(context).textTheme.headline6?.copyWith(color: Colors.grey),
       ),
     );
   }
@@ -192,9 +193,9 @@ class _CountryDetailPageState extends State<CountryDetailPage> {
     setState(() => _isLoading = true);
     try {
       var countryInfo = await api.getCountryByName(widget.countryName);
-      deathPercentage = (countryInfo.deaths / countryInfo.cases) * 100;
-      recoveryPercentage = (countryInfo.recovered / countryInfo.cases) * 100;
-      activePercentage = 100 - (deathPercentage + recoveryPercentage);
+      deathPercentage = ((countryInfo.deaths)! / (countryInfo.cases)!) * 100;
+      recoveryPercentage = ((countryInfo.recovered)! / (countryInfo.cases)!) * 100;
+      activePercentage = 100 - (deathPercentage! + recoveryPercentage!);
 
       print(deathPercentage);
       print(recoveryPercentage);

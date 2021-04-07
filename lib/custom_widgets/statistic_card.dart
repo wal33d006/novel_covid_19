@@ -9,10 +9,10 @@ class StatisticCard extends StatelessWidget {
   final IconData icon;
 
   StatisticCard({
-    @required this.color,
-    @required this.icon,
-    @required this.text,
-    @required this.stats,
+    required this.color,
+    required this.icon,
+    required this.text,
+    required this.stats,
   });
 
   @override

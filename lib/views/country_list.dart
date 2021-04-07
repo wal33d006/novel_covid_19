@@ -13,12 +13,12 @@ class CountryListPage extends StatefulWidget {
 class _CountryListPageState extends State<CountryListPage> {
   bool _isLoading = false;
   CovidApi api = CovidApi();
-  var items = List<Country>();
+  var items = <Country>[];
   var _focusNode = FocusNode();
-  List<Country> _countries = List<Country>();
+  List<Country>? _countries = <Country>[];
   var _controller = TextEditingController();
 
-  HomeCountry _homeCountry;
+  HomeCountry? _homeCountry;
 
   @override
   void initState() {
@@ -27,12 +27,12 @@ class _CountryListPageState extends State<CountryListPage> {
   }
 
   void filterSearchResults(String query) {
-    List<Country> dummySearchList = List<Country>();
-    dummySearchList.addAll(_countries);
+    List<Country> dummySearchList = <Country>[];
+    dummySearchList.addAll(_countries!);
     if (query.isNotEmpty) {
-      List<Country> dummyListData = List<Country>();
+      List<Country> dummyListData = <Country>[];
       dummySearchList.forEach((item) {
-        if (item.country.toLowerCase().contains(query.toLowerCase())) {
+        if ((item.country)!.toLowerCase().contains(query.toLowerCase())) {
           dummyListData.add(item);
         }
       });
@@ -44,7 +44,7 @@ class _CountryListPageState extends State<CountryListPage> {
     } else {
       setState(() {
         items.clear();
-        items.addAll(_countries);
+        items.addAll(_countries!);
       });
     }
   }
@@ -81,6 +81,7 @@ class _CountryListPageState extends State<CountryListPage> {
                         ),
                       ),
                     ),
+
                     Expanded(
                       child: ListView.builder(
                         itemCount: items.length,
@@ -99,16 +100,16 @@ class _CountryListPageState extends State<CountryListPage> {
                                   Navigator.of(context).push(
                                     MaterialPageRoute(
                                       builder: (context) => CountryDetailPage(
-                                          countryName: country.country),
+                                          countryName: (country.country)!),
                                     ),
                                   );
                                 },
                                 title: Row(
                                   children: <Widget>[
-                                    Text(country.country),
+                                    Text(country.country!),
                                     if (_homeCountry != null &&
-                                        _homeCountry.name
-                                                .compareTo(country.country) ==
+                                        _homeCountry?.name
+                                                .compareTo(country.country!) ==
                                             0)
                                       Icon(
                                         Icons.home,
@@ -134,7 +135,7 @@ class _CountryListPageState extends State<CountryListPage> {
     return Center(
       child: Text(
         'Unable to fetch data',
-        style: Theme.of(context).textTheme.title.copyWith(color: Colors.grey),
+        style: Theme.of(context).textTheme.headline6!.copyWith(color: Colors.grey),
       ),
     );
   }
@@ -146,8 +147,8 @@ class _CountryListPageState extends State<CountryListPage> {
       var countries = await api.getAllCountriesInfo();
       setState(() {
         _countries = countries;
-        items.addAll(_countries);
-        if (list != null)
+        items.addAll(_countries!);
+        if (list!.isNotEmpty)
           setState(() {
             _homeCountry = HomeCountry(
               name: list[0],

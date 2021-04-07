@@ -13,14 +13,14 @@ class GlobalInfoPage extends StatefulWidget {
 }
 
 class _GlobalInfoPageState extends State<GlobalInfoPage> {
-  GlobalInfo _stats;
-  double deathPercentage;
-  double activePercentage;
+  GlobalInfo? _stats;
+  double? deathPercentage;
+  double? activePercentage;
   bool _isLoading = false;
   CovidApi api = CovidApi();
-  double recoveryPercentage;
+  double? recoveryPercentage;
 
-  HomeCountry _homeCountry;
+  HomeCountry? _homeCountry;
 
   @override
   void initState() {
@@ -46,15 +46,15 @@ class _GlobalInfoPageState extends State<GlobalInfoPage> {
                             color: Theme.of(context).accentColor,
                           ),
                         ),
-                        title: Text(_homeCountry.name),
+                        title: Text((_homeCountry!.name)),
                         subtitle: Text(
-                          _homeCountry.cases + '--' + _homeCountry.deaths,
+                          (_homeCountry!.cases) + '--' + (_homeCountry!.deaths),
                         ),
                         trailing: Icon(Icons.arrow_right),
                         onTap: () => Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) => CountryDetailPage(
-                              countryName: _homeCountry.name,
+                              countryName: (_homeCountry!.name),
                             ),
                           ),
                         ),
@@ -63,19 +63,19 @@ class _GlobalInfoPageState extends State<GlobalInfoPage> {
                       color: Colors.orange,
                       text: 'Total cases',
                       icon: Icons.timeline,
-                      stats: _stats.cases,
+                      stats: (_stats!.cases!),
                     ),
                     StatisticCard(
                       color: Colors.green,
                       text: 'Total recovered',
                       icon: Icons.whatshot,
-                      stats: _stats.recovered,
+                      stats: (_stats!.recovered)!,
                     ),
                     StatisticCard(
                       color: Colors.red,
                       text: 'Total deaths',
                       icon: Icons.airline_seat_individual_suite,
-                      stats: _stats.deaths,
+                      stats: (_stats!.deaths)!,
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -85,7 +85,7 @@ class _GlobalInfoPageState extends State<GlobalInfoPage> {
                           leading: Icon(Icons.sentiment_very_dissatisfied),
                           title: Text('Death percentage'),
                           trailing: Text(
-                            deathPercentage.toStringAsFixed(2) + ' %',
+                            deathPercentage!.toStringAsFixed(2) + ' %',
                             style: TextStyle(
                                 color: Theme.of(context).accentColor,
                                 fontWeight: FontWeight.bold),
@@ -101,7 +101,7 @@ class _GlobalInfoPageState extends State<GlobalInfoPage> {
                           leading: Icon(Icons.sentiment_very_satisfied),
                           title: Text('Recovery percentage'),
                           trailing: Text(
-                            recoveryPercentage.toStringAsFixed(2) + ' %',
+                            recoveryPercentage!.toStringAsFixed(2) + ' %',
                             style: TextStyle(
                                 color: Theme.of(context).accentColor,
                                 fontWeight: FontWeight.bold),
@@ -118,7 +118,7 @@ class _GlobalInfoPageState extends State<GlobalInfoPage> {
     return Center(
       child: Text(
         'Unable to fetch data',
-        style: Theme.of(context).textTheme.title.copyWith(color: Colors.grey),
+        style: Theme.of(context).textTheme.headline6!.copyWith(color: Colors.grey),
       ),
     );
   }
@@ -127,9 +127,9 @@ class _GlobalInfoPageState extends State<GlobalInfoPage> {
     setState(() => _isLoading = true);
     try {
       var stats = await api.getGlobalInfo();
-      deathPercentage = (stats.deaths / stats.cases) * 100;
-      recoveryPercentage = (stats.recovered / stats.cases) * 100;
-      activePercentage = 100 - (deathPercentage + recoveryPercentage);
+      deathPercentage = (stats.deaths! / stats.cases!) * 100;
+      recoveryPercentage = (stats.recovered! / stats.cases!) * 100;
+      activePercentage = 100 - (deathPercentage! + recoveryPercentage!);
 
       print(deathPercentage);
       print(recoveryPercentage);

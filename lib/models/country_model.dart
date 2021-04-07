@@ -1,30 +1,31 @@
 class Country {
-  String country;
-  int cases;
-  int todayCases;
-  int deaths;
-  int todayDeaths;
-  int recovered;
-  int active;
-  int critical;
-  int casesPerOneMillion;
-  int deathsPerOneMillion;
-  int totalTests;
-  int testsPerOneMillion;
+  String? country;
+  int? cases;
+  int? todayCases;
+  int? deaths;
+  int? todayDeaths;
+  int? recovered;
+  int? active;
+  int? critical;
+  int? casesPerOneMillion;
+  int? deathsPerOneMillion;
+  int? totalTests;
+  int? testsPerOneMillion;
 
-  Country(
-      {this.country,
-        this.cases,
-        this.todayCases,
-        this.deaths,
-        this.todayDeaths,
-        this.recovered,
-        this.active,
-        this.critical,
-        this.casesPerOneMillion,
-        this.deathsPerOneMillion,
-        this.totalTests,
-        this.testsPerOneMillion});
+  Country({
+    this.country,
+    this.cases,
+    this.todayCases,
+    this.deaths,
+    this.todayDeaths,
+    this.recovered,
+    this.active,
+    this.critical,
+    this.casesPerOneMillion,
+    this.deathsPerOneMillion,
+    this.totalTests,
+    this.testsPerOneMillion,
+  });
 
   Country.fromJson(Map<String, dynamic> json) {
     country = json['country'];
@@ -65,8 +66,8 @@ class HomeCountry {
   final String deaths;
 
   HomeCountry({
-    this.name,
-    this.cases,
-    this.deaths,
+    required this.name,
+    required this.cases,
+    required this.deaths,
   });
 }

@@ -10,7 +10,9 @@ final netWorkCalls = NetworkCalls();
 final mySharedPreferences = MySharedPreferences();
 
 final RegExp reg = new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))');
-final Function mathFunc = (Match match) => '${match[1]},';
+//final Function mathFunc = (Match match) => '${match[1]},';
+
+String mathFunc(Match match) => '${match[1]},';
 
 abstract class UrlConstants {
   static const String baseUrl = 'https://coronavirus-19-api.herokuapp.com';
@@ -24,13 +26,10 @@ abstract class SharedPreferencesKeys {
 }
 
 class MySharedPreferences {
-  Future<List<String>> fetchHomeCountry() async {
+  Future<List<String>?> fetchHomeCountry() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var list = prefs.getStringList(SharedPreferencesKeys.homeCountryDetails);
-    if (list != null) {
-      return list;
-    }
-    return null;
+    return list;
   }
 
   Future setHomeCountry(HomeCountry country) async {
