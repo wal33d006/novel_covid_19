@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:novel_covid_19/cubits/global_info_cubit.dart';
 import 'package:novel_covid_19/global.dart';
 import 'package:novel_covid_19/views/home_master.dart';
 import 'package:provider/provider.dart';
@@ -63,7 +65,14 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Novel Covid-19 Tracker',
       theme: themeNotifier.getTheme(),
-      home: HomePageMaster(),
+      home: MultiBlocProvider(
+        providers: [
+          BlocProvider<GlobalInfoCubit>(
+            create: (context) => GlobalInfoCubit()..fetchGlobalStats(),
+          ),
+        ],
+        child: HomePageMaster(),
+      ),
     );
   }
 }

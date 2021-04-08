@@ -19,3 +19,15 @@ class GlobalInfo {
     return data;
   }
 }
+
+class GlobalInfoPercentageModel {
+  double? deathPercentage;
+  double? activePercentage;
+  double? recoveryPercentage;
+
+  GlobalInfoPercentageModel({
+    this.activePercentage,
+    this.deathPercentage,
+    this.recoveryPercentage,
+  });
+}
