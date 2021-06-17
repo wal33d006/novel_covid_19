@@ -4,15 +4,15 @@ import '../global.dart';
 
 class StatisticCard extends StatelessWidget {
   final String text;
-  final int stats;
+  final int? stats;
   final Color color;
   final IconData icon;
 
   StatisticCard({
-    @required this.color,
-    @required this.icon,
-    @required this.text,
-    @required this.stats,
+    required this.color,
+    required this.icon,
+    required this.text,
+    required this.stats,
   });
 
   @override
@@ -32,7 +32,7 @@ class StatisticCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      stats.toString().replaceAllMapped(reg, mathFunc),
+                      stats.toString().replaceAllMapped(reg, mathFunc as String Function(Match)),
                       style: Theme.of(context).textTheme.display2,
                     ),
                     Text(

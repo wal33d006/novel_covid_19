@@ -15,7 +15,7 @@ class CovidApi {
     return list.map((item) => Country.fromJson(item)).toList();
   }
 
-  Future<Country> getCountryByName(String country) async {
+  Future<Country> getCountryByName(String? country) async {
     var response =
         await netWorkCalls.get('${UrlConstants.allCountries}/$country');
     return Country.fromJson(jsonDecode(response));

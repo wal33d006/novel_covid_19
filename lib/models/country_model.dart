@@ -1,16 +1,16 @@
 class Country {
-  String country;
-  int cases;
-  int todayCases;
-  int deaths;
-  int todayDeaths;
-  int recovered;
-  int active;
-  int critical;
-  int casesPerOneMillion;
-  int deathsPerOneMillion;
-  int totalTests;
-  int testsPerOneMillion;
+  String? country;
+  int? cases;
+  int? todayCases;
+  int? deaths;
+  int? todayDeaths;
+  int? recovered;
+  int? active;
+  int? critical;
+  int? casesPerOneMillion;
+  int? deathsPerOneMillion;
+  int? totalTests;
+  int? testsPerOneMillion;
 
   Country(
       {this.country,
@@ -65,8 +65,8 @@ class HomeCountry {
   final String deaths;
 
   HomeCountry({
-    this.name,
-    this.cases,
-    this.deaths,
+    required this.name,
+    required this.cases,
+    required this.deaths,
   });
 }

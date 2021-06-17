@@ -24,7 +24,7 @@ abstract class SharedPreferencesKeys {
 }
 
 class MySharedPreferences {
-  Future<List<String>> fetchHomeCountry() async {
+  Future<List<String>?> fetchHomeCountry() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var list = prefs.getStringList(SharedPreferencesKeys.homeCountryDetails);
     if (list != null) {
@@ -35,10 +35,19 @@ class MySharedPreferences {
 
   Future setHomeCountry(HomeCountry country) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setStringList(SharedPreferencesKeys.homeCountryDetails, <String>[
+    await prefs
+        .setStringList(SharedPreferencesKeys.homeCountryDetails, <String>[
       country.name,
       country.cases,
       country.deaths,
     ]);
+    MyClass? hello;
+    print(hello?.a);
   }
+}
+
+class MyClass {
+  String? a;
+
+  MyClass({this.a});
 }

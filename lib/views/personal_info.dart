@@ -28,7 +28,7 @@ class PersonalInfoScreen extends StatelessWidget {
                         'Waleed Arshad',
                         style: Theme.of(context)
                             .textTheme
-                            .headline
+                            .headline!
                             .copyWith(color: Theme.of(context).accentColor),
                         textAlign: TextAlign.center,
                       ),
