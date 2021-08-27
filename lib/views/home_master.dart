@@ -38,18 +38,20 @@ class _HomePageMasterState extends State<HomePageMaster> {
             });
           },
         ),
-        actions: <Widget>[
+        actions: [
           ThemeSwitch(),
         ],
       ),
       body: Row(
         children: [
+          // This AnimatedCrossFade Widget is giving a lot of issues
+          // it can be replaced with Stack Widget.
           AnimatedCrossFade(
             crossFadeState: _showNavigationRail
                 ? CrossFadeState.showSecond
                 : CrossFadeState.showFirst,
             duration: Duration(milliseconds: 300),
-            firstChild: Container(),
+            firstChild: SizedBox(),
             secondChild: NavigationRail(
               selectedIndex: _currentIndex,
               onDestinationSelected: (int index) {

@@ -37,9 +37,9 @@ class MySharedPreferences {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs
         .setStringList(SharedPreferencesKeys.homeCountryDetails, <String>[
-      country.name,
-      country.cases,
-      country.deaths,
+      country.name!,
+      country.cases!,
+      country.deaths!,
     ]);
     MyClass? hello;
     print(hello?.a);

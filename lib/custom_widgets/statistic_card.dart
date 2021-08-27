@@ -33,11 +33,11 @@ class StatisticCard extends StatelessWidget {
                   children: <Widget>[
                     Text(
                       stats.toString().replaceAllMapped(reg, mathFunc as String Function(Match)),
-                      style: Theme.of(context).textTheme.display2,
+                      style: Theme.of(context).textTheme.bodyText2,
                     ),
                     Text(
                       text,
-                      style: Theme.of(context).textTheme.headline,
+                      style: Theme.of(context).textTheme.headline5,
                     ),
                   ],
                 ),

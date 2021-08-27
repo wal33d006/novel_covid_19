@@ -60,9 +60,9 @@ class Country {
 }
 
 class HomeCountry {
-  final String name;
-  final String cases;
-  final String deaths;
+  final String? name;
+  final String? cases;
+  final String? deaths;
 
   HomeCountry({
     required this.name,

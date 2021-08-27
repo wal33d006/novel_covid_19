@@ -93,7 +93,7 @@ class _CountryDetailPageState extends State<CountryDetailPage> {
                                     textAlign: TextAlign.center,
                                     style: Theme.of(context)
                                         .textTheme
-                                        .subtitle!
+                                        .subtitle1!
                                         .copyWith(
                                             color:
                                                 Theme.of(context).primaryColor),
@@ -184,7 +184,7 @@ class _CountryDetailPageState extends State<CountryDetailPage> {
     return Center(
       child: Text(
         'Unable to fetch data',
-        style: Theme.of(context).textTheme.title!.copyWith(color: Colors.grey),
+        style: Theme.of(context).textTheme.headline6!.copyWith(color: Colors.grey),
       ),
     );
   }

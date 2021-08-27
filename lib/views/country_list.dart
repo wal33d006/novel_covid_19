@@ -26,6 +26,12 @@ class _CountryListPageState extends State<CountryListPage> {
     _fetchCountries();
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
+
   void filterSearchResults(String query) {
     List<Country> dummySearchList = <Country>[];
     dummySearchList.addAll(_countries!);
@@ -134,7 +140,7 @@ class _CountryListPageState extends State<CountryListPage> {
     return Center(
       child: Text(
         'Unable to fetch data',
-        style: Theme.of(context).textTheme.title!.copyWith(color: Colors.grey),
+        style: Theme.of(context).textTheme.headline6!.copyWith(color: Colors.grey),
       ),
     );
   }

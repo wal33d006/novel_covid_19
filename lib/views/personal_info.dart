@@ -16,11 +16,11 @@ class PersonalInfoScreen extends StatelessWidget {
                     CircleAvatar(
                       radius: 93.0,
                       backgroundColor: Theme.of(context).accentColor,
-                      child: CircleAvatar(
-                        radius: 90.0,
-                        backgroundImage: NetworkImage(
-                            'https://media-exp1.licdn.com/dms/image/C4D03AQEF0bDkllWyAQ/profile-displayphoto-shrink_400_400/0?e=1602115200&v=beta&t=FvkFAnHPiE2ipkx2Qw9OE-lo8PpW7K2Y-T4xenUN5sw'),
-                      ),
+                      // child: CircleAvatar(
+                      //   radius: 90.0,
+                      //   backgroundImage: NetworkImage(
+                      //       'https://media-exp1.licdn.com/dms/image/C4D03AQEF0bDkllWyAQ/profile-displayphoto-shrink_400_400/0?e=1602115200&v=beta&t=FvkFAnHPiE2ipkx2Qw9OE-lo8PpW7K2Y-T4xenUN5sw'),
+                      // ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0),
@@ -28,7 +28,7 @@ class PersonalInfoScreen extends StatelessWidget {
                         'Waleed Arshad',
                         style: Theme.of(context)
                             .textTheme
-                            .headline!
+                            .headline5!
                             .copyWith(color: Theme.of(context).accentColor),
                         textAlign: TextAlign.center,
                       ),

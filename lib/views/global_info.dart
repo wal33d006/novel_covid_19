@@ -118,7 +118,7 @@ class _GlobalInfoPageState extends State<GlobalInfoPage> {
     return Center(
       child: Text(
         'Unable to fetch data',
-        style: Theme.of(context).textTheme.title!.copyWith(color: Colors.grey),
+        style: Theme.of(context).textTheme.headline6!.copyWith(color: Colors.grey),
       ),
     );
   }
