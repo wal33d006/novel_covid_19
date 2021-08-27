@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:novel_covid_19/models/country_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -51,3 +52,23 @@ class MyClass {
 
   MyClass({this.a});
 }
+
+List<Map<String, dynamic>> navigation = [
+  {
+    "icon": Icons.public,
+    "label": "Global",
+    "idx": 1
+  },
+  {
+    "icon": Icons.list,
+    "label": "Countries",
+    "idx": 2
+  },
+  {
+    "icon": Icons.info,
+    "label": "Countries",
+    "idx": 3
+  }
+];
+
+
