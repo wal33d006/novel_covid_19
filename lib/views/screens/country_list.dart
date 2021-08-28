@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:novel_covid_19/controllers/covid_api.dart';
-import 'package:novel_covid_19/custom_widgets/virus_loader.dart';
+import 'package:novel_covid_19/domain/entities/home_country.dart';
 import 'package:novel_covid_19/global.dart';
 import 'package:novel_covid_19/models/country_model.dart';
+import 'package:novel_covid_19/views/widgets/virus_loader.dart';
 import 'country_detail.dart';
 
 class CountryListPage extends StatefulWidget {

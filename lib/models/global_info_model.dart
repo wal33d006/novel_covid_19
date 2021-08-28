@@ -1,9 +1,9 @@
 class GlobalInfo {
+  GlobalInfo({this.cases, this.deaths, this.recovered});
+
   int? cases;
   int? deaths;
   int? recovered;
-
-  GlobalInfo({this.cases, this.deaths, this.recovered});
 
   GlobalInfo.fromJson(Map<String, dynamic> json) {
     cases = json['cases'];

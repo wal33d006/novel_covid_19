@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:novel_covid_19/controllers/covid_api.dart';
-import 'package:novel_covid_19/custom_widgets/statistic_card.dart';
-import 'package:novel_covid_19/custom_widgets/virus_loader.dart';
+import 'package:novel_covid_19/domain/entities/home_country.dart';
+import 'package:novel_covid_19/views/widgets/statistic_card.dart';
+import 'package:novel_covid_19/views/widgets/virus_loader.dart';
 import 'package:novel_covid_19/global.dart';
-import 'package:novel_covid_19/models/country_model.dart';
 import 'package:novel_covid_19/models/global_info_model.dart';
-import 'package:novel_covid_19/views/country_detail.dart';
+import 'package:novel_covid_19/views/screens/country_detail.dart';
 
 class GlobalInfoPage extends StatefulWidget {
   @override

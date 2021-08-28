@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:novel_covid_19/global.dart';
-import 'package:novel_covid_19/views/home_master.dart';
+import 'package:novel_covid_19/views/screens/home_master.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -41,7 +41,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
   var isDarkTheme = prefs.getBool(SharedPreferencesKeys.isDarkTheme);
+
   ThemeData theme;
+
   if(isDarkTheme != null) {
     theme = isDarkTheme ? darkTheme : lightTheme;
   } else {

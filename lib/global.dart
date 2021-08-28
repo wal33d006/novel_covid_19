@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:novel_covid_19/models/country_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'domain/entities/home_country.dart';
 import 'network/network_calls.dart';
 
 final client = Client();
@@ -36,39 +36,19 @@ class MySharedPreferences {
 
   Future setHomeCountry(HomeCountry country) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs
-        .setStringList(SharedPreferencesKeys.homeCountryDetails, <String>[
-      country.name!,
-      country.cases!,
-      country.deaths!,
-    ]);
-    MyClass? hello;
-    print(hello?.a);
+    await prefs.setStringList(
+      SharedPreferencesKeys.homeCountryDetails,
+      <String>[
+        country.name!,
+        country.cases!,
+        country.deaths!,
+      ],
+    );
   }
-}
-
-class MyClass {
-  String? a;
-
-  MyClass({this.a});
 }
 
 List<Map<String, dynamic>> navigation = [
-  {
-    "icon": Icons.public,
-    "label": "Global",
-    "idx": 1
-  },
-  {
-    "icon": Icons.list,
-    "label": "Countries",
-    "idx": 2
-  },
-  {
-    "icon": Icons.info,
-    "label": "Countries",
-    "idx": 3
-  }
+  {"icon": Icons.public, "label": "Global", "idx": 1},
+  {"icon": Icons.list, "label": "Countries", "idx": 2},
+  {"icon": Icons.info, "label": "About", "idx": 3}
 ];
-
-

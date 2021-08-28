@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../global.dart';
+import '../../global.dart';
 
 class StatisticCard extends StatelessWidget {
   final String text;
@@ -46,7 +46,7 @@ class StatisticCard extends StatelessWidget {
                   alignment: Alignment.topRight,
                   child: Icon(
                     icon,
-                    size: 100.0,
+                    size: 80.0,
                     color: color,
                   ))
             ],

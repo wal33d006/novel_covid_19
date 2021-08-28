@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:novel_covid_19/controllers/covid_api.dart';
-import 'package:novel_covid_19/custom_widgets/statistic_card.dart';
-import 'package:novel_covid_19/custom_widgets/theme_switch.dart';
-import 'package:novel_covid_19/custom_widgets/virus_loader.dart';
+import 'package:novel_covid_19/domain/entities/home_country.dart';
+import 'package:novel_covid_19/views/widgets/statistic_card.dart';
+import 'package:novel_covid_19/views/widgets/theme_switch.dart';
+import 'package:novel_covid_19/views/widgets/virus_loader.dart';
 import 'package:novel_covid_19/models/country_model.dart';
 
-import '../global.dart';
+import '../../global.dart';
 
 class CountryDetailPage extends StatefulWidget {
   final String? countryName;
@@ -22,9 +23,11 @@ class _CountryDetailPageState extends State<CountryDetailPage> {
   double? activePercentage;
   bool _isLoading = false;
   bool _isHome = false;
-  CovidApi api = CovidApi();
   double? recoveryPercentage;
   bool _isSettingCountry = false;
+
+  // Controller Initialization -->
+  CovidApi api = CovidApi();
 
   @override
   void initState() {
@@ -184,7 +187,8 @@ class _CountryDetailPageState extends State<CountryDetailPage> {
     return Center(
       child: Text(
         'Unable to fetch data',
-        style: Theme.of(context).textTheme.headline6!.copyWith(color: Colors.grey),
+        style:
+            Theme.of(context).textTheme.headline6!.copyWith(color: Colors.grey),
       ),
     );
   }
@@ -197,11 +201,8 @@ class _CountryDetailPageState extends State<CountryDetailPage> {
       recoveryPercentage = (countryInfo.recovered! / countryInfo.cases!) * 100;
       activePercentage = 100 - (deathPercentage! + recoveryPercentage!);
 
-      print(deathPercentage);
-      print(recoveryPercentage);
-      print(activePercentage);
       setState(() => _countryInfo = countryInfo);
-    } catch (ex) {
+    } catch (exception) {
       setState(() => _countryInfo = null);
     } finally {
       setState(() => _isLoading = false);
