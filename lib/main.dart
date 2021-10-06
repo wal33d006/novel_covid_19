@@ -44,20 +44,16 @@ void main() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   var isDarkTheme = prefs.getBool(SharedPreferencesKeys.isDarkTheme);
   ThemeData theme;
-  if(isDarkTheme != null) {
+  if (isDarkTheme != null) {
     theme = isDarkTheme ? darkTheme : lightTheme;
   } else {
     theme = lightTheme;
   }
   runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider<ThemeNotifier>(
-          create: (_) => ThemeNotifier(theme),
-          child: MyApp(),
-          builder: (context, wigdet) => MyApp(),
-        ),
-      ],
+    ChangeNotifierProvider<ThemeNotifier>(
+      create: (_) => ThemeNotifier(theme),
+      child: MyApp(),
+      builder: (context, wigdet) => MyApp(),
     ),
   );
 }
