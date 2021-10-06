@@ -50,9 +50,14 @@ void main() async {
     theme = lightTheme;
   }
   runApp(
-    ChangeNotifierProvider<ThemeNotifier>(
-      create: (_) => ThemeNotifier(theme),
-      child: MyApp(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<ThemeNotifier>(
+          create: (_) => ThemeNotifier(theme),
+          child: MyApp(),
+          builder: (context, wigdet) => MyApp(),
+        ),
+      ],
     ),
   );
 }
