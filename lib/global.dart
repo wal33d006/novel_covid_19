@@ -1,5 +1,5 @@
 import 'package:http/http.dart';
-import 'package:novel_covid_19/models/country_model.dart';
+import 'package:novel_covid_19/data/models/country_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'network/network_calls.dart';
 

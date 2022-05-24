@@ -1,14 +1,15 @@
 import 'package:novel_covid_19/base/base_cubit.dart';
 import 'package:novel_covid_19/base/base_states.dart';
 import 'package:novel_covid_19/controllers/covid_api.dart';
-import 'package:novel_covid_19/models/country_model.dart';
-import 'package:novel_covid_19/models/global_info_model.dart';
+import 'package:novel_covid_19/data/models/country_model.dart';
+import 'package:novel_covid_19/data/models/global_info_model.dart';
+import 'package:novel_covid_19/main.dart';
 import 'package:novel_covid_19/states/global_info_state.dart';
 
 import '../global.dart';
 
 class GlobalInfoCubit extends BaseCubit<BaseState> {
-  CovidApi api = CovidApi();
+  CovidApi api = getIt();
 
   fetchGlobalStats() async {
     makeACall(

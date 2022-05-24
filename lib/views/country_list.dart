@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:novel_covid_19/controllers/covid_api.dart';
 import 'package:novel_covid_19/custom_widgets/virus_loader.dart';
+import 'package:novel_covid_19/data/models/country_model.dart';
 import 'package:novel_covid_19/global.dart';
-import 'package:novel_covid_19/models/country_model.dart';
 import 'country_detail.dart';
 
 class CountryListPage extends StatefulWidget {
@@ -13,9 +13,9 @@ class CountryListPage extends StatefulWidget {
 class _CountryListPageState extends State<CountryListPage> {
   bool _isLoading = false;
   CovidApi api = CovidApi();
-  var items = <Country>[];
+  var items = <CountryModel>[];
   var _focusNode = FocusNode();
-  List<Country>? _countries = <Country>[];
+  List<CountryModel>? _countries = <CountryModel>[];
   var _controller = TextEditingController();
 
   HomeCountry? _homeCountry;
@@ -23,16 +23,16 @@ class _CountryListPageState extends State<CountryListPage> {
   @override
   void initState() {
     super.initState();
-    _fetchCountries();
+    // _fetchCountries();
   }
 
   void filterSearchResults(String query) {
-    List<Country> dummySearchList = <Country>[];
+    List<CountryModel> dummySearchList = <CountryModel>[];
     dummySearchList.addAll(_countries!);
     if (query.isNotEmpty) {
-      List<Country> dummyListData = <Country>[];
+      List<CountryModel> dummyListData = <CountryModel>[];
       dummySearchList.forEach((item) {
-        if ((item.country)!.toLowerCase().contains(query.toLowerCase())) {
+        if (item.country.toLowerCase().contains(query.toLowerCase())) {
           dummyListData.add(item);
         }
       });
@@ -70,26 +70,22 @@ class _CountryListPageState extends State<CountryListPage> {
                                 color: Theme.of(context).accentColor,
                               ),
                               border: OutlineInputBorder(),
-                              focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Theme.of(context).accentColor)),
+                              focusedBorder:
+                                  OutlineInputBorder(borderSide: BorderSide(color: Theme.of(context).accentColor)),
                               labelText: 'Search',
-                              labelStyle: TextStyle(
-                                  color: Theme.of(context).accentColor),
+                              labelStyle: TextStyle(color: Theme.of(context).accentColor),
                               hintText: 'Enter country name'),
                           onChanged: filterSearchResults,
                         ),
                       ),
                     ),
-
                     Expanded(
                       child: ListView.builder(
                         itemCount: items.length,
                         itemBuilder: (context, index) {
                           var country = items[index];
                           return Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 8.0),
+                            padding: const EdgeInsets.symmetric(horizontal: 8.0),
                             child: Card(
                               elevation: 4.0,
                               child: ListTile(
@@ -100,25 +96,22 @@ class _CountryListPageState extends State<CountryListPage> {
                                   Navigator.of(context).push(
                                     MaterialPageRoute(
                                       builder: (context) => CountryDetailPage(
-                                          countryName: (country.country)!),
+                                        countryName: country.country,
+                                      ),
                                     ),
                                   );
                                 },
                                 title: Row(
                                   children: <Widget>[
-                                    Text(country.country!),
-                                    if (_homeCountry != null &&
-                                        _homeCountry?.name
-                                                .compareTo(country.country!) ==
-                                            0)
+                                    Text(country.country),
+                                    if (_homeCountry != null && _homeCountry?.name.compareTo(country.country) == 0)
                                       Icon(
                                         Icons.home,
                                         size: 16.0,
                                       )
                                   ],
                                 ),
-                                subtitle:
-                                    Text('Cases: ' + country.cases.toString()),
+                                subtitle: Text('Cases: ' + country.cases.toString()),
                                 trailing: Icon(Icons.arrow_right),
                               ),
                             ),
@@ -140,27 +133,27 @@ class _CountryListPageState extends State<CountryListPage> {
     );
   }
 
-  void _fetchCountries() async {
-    try {
-      setState(() => _isLoading = true);
-      var list = await mySharedPreferences.fetchHomeCountry();
-      var countries = await api.getAllCountriesInfo();
-      setState(() {
-        _countries = countries;
-        items.addAll(_countries!);
-        if (list != null)
-          setState(() {
-            _homeCountry = HomeCountry(
-              name: list[0],
-              cases: list[1],
-              deaths: list[2],
-            );
-          });
-      });
-    } catch (ex) {
-      setState(() => _countries = null);
-    } finally {
-      setState(() => _isLoading = false);
-    }
-  }
+// void _fetchCountries() async {
+//   try {
+//     setState(() => _isLoading = true);
+//     var list = await mySharedPreferences.fetchHomeCountry();
+//     var countries = await api.getAllCountriesInfo();
+//     setState(() {
+//       _countries = countries;
+//       items.addAll(_countries!);
+//       if (list != null)
+//         setState(() {
+//           _homeCountry = HomeCountry(
+//             name: list[0],
+//             cases: list[1],
+//             deaths: list[2],
+//           );
+//         });
+//     });
+//   } catch (ex) {
+//     setState(() => _countries = null);
+//   } finally {
+//     setState(() => _isLoading = false);
+//   }
+// }
 }

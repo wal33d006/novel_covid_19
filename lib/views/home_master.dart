@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:novel_covid_19/custom_widgets/theme_switch.dart';
+import 'package:novel_covid_19/main.dart';
+import 'package:novel_covid_19/views/country_list/country_list_initial_params.dart';
+import 'package:novel_covid_19/views/country_list/country_list_page.dart';
 import 'package:novel_covid_19/views/personal_info.dart';
-import 'country_list.dart';
 import 'global_info.dart';
 
 class HomePageMaster extends StatefulWidget {
@@ -13,13 +15,20 @@ class _HomePageMasterState extends State<HomePageMaster> {
   String _currentAppBarTitle = 'Global';
   int _currentIndex = 0;
 
-  List<Widget> _widgets = <Widget>[
-    GlobalInfoPage(),
-    CountryListPage(),
-    PersonalInfoScreen(),
-  ];
-
   bool _showNavigationRail = false;
+
+  List<Widget> _widgets = [];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _widgets = <Widget>[
+      GlobalInfoPage(),
+      getIt<CountryListPage>(param1: const CountryListInitialParams()),
+      PersonalInfoScreen(),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,9 +54,7 @@ class _HomePageMasterState extends State<HomePageMaster> {
       body: Row(
         children: [
           AnimatedCrossFade(
-            crossFadeState: _showNavigationRail
-                ? CrossFadeState.showSecond
-                : CrossFadeState.showFirst,
+            crossFadeState: _showNavigationRail ? CrossFadeState.showSecond : CrossFadeState.showFirst,
             duration: Duration(milliseconds: 300),
             firstChild: Container(),
             secondChild: NavigationRail(

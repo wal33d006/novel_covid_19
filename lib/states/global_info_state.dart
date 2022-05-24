@@ -1,6 +1,6 @@
 import 'package:novel_covid_19/base/base_states.dart';
-import 'package:novel_covid_19/models/country_model.dart';
-import 'package:novel_covid_19/models/global_info_model.dart';
+import 'package:novel_covid_19/data/models/country_model.dart';
+import 'package:novel_covid_19/data/models/global_info_model.dart';
 
 abstract class GlobalInfoState extends BaseState {}
 
