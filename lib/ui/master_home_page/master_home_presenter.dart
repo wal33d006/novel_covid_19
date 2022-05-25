@@ -1,7 +1,5 @@
 import 'package:novel_covid_19/domain/use_cases/get_theme_use_case.dart';
 import 'package:novel_covid_19/domain/use_cases/update_theme_use_case.dart';
-import 'package:novel_covid_19/ui/country_details/country_details_navigator.dart';
-import 'package:novel_covid_19/ui/country_details/country_details_presentation_model.dart';
 import 'package:novel_covid_19/ui/master_home_page/master_home_navigator.dart';
 import 'package:novel_covid_19/ui/master_home_page/master_home_presentation_model.dart';
 
@@ -26,5 +24,18 @@ class MasterHomePresenter {
 
   void onBulbPressed() => _model.showNavigationRail = !_model.showNavigationRail;
 
-  void onNavigationUpdated(int value) => _model.currentIndex = value;
+  void onNavigationUpdated(int value) {
+    _model.currentIndex = value;
+    switch (value) {
+      case 0:
+        _model.appBarTitle = 'Global';
+        break;
+      case 1:
+        _model.appBarTitle = 'Countries';
+        break;
+      case 2:
+        _model.appBarTitle = 'About';
+        break;
+    }
+  }
 }

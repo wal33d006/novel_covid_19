@@ -15,6 +15,7 @@ final lightTheme = ThemeData(
   primaryColor: Colors.white,
   brightness: Brightness.light,
   backgroundColor: const Color(0xFFE5E5E5),
+  appBarTheme: AppBarTheme(color: Colors.white),
   accentColor: Colors.black,
   accentIconTheme: IconThemeData(color: Colors.white),
   dividerColor: Colors.white54,

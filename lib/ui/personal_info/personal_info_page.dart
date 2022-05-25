@@ -19,7 +19,7 @@ class PersonalInfoPage extends StatelessWidget {
                       child: CircleAvatar(
                         radius: 90.0,
                         backgroundImage: NetworkImage(
-                            'https://media-exp1.licdn.com/dms/image/C4D03AQEF0bDkllWyAQ/profile-displayphoto-shrink_400_400/0?e=1602115200&v=beta&t=FvkFAnHPiE2ipkx2Qw9OE-lo8PpW7K2Y-T4xenUN5sw'),
+                            'https://pbs.twimg.com/profile_images/1322905863452008449/xzTBfTca_400x400.jpg'),
                       ),
                     ),
                     Padding(
