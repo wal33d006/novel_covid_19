@@ -24,7 +24,7 @@ dependencies:
   provider: 6.0.3
   shared_preferences: 2.0.15
   get_it: 7.2.0
-  flutter_bloc: 8.0.1
+  intl: 0.17.0
   equatable: 2.0.3
   dartz: 0.10.1
   mobx: 2.0.7+2

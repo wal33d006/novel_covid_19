@@ -19,6 +19,6 @@ class GetCountryListFailure {
 
   @override
   String toString() {
-    return 'AddAccountFailure{cause: $cause}';
+    return 'GetCountryListFailure{cause: $cause}';
   }
 }

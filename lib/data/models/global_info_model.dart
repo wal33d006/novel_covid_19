@@ -1,33 +1,25 @@
-class GlobalInfo {
-  int? cases;
-  int? deaths;
-  int? recovered;
+import 'package:novel_covid_19/domain/entities/global_info.dart';
 
-  GlobalInfo({this.cases, this.deaths, this.recovered});
+class GlobalInfoModel {
+  final int cases;
+  final int deaths;
+  final int recovered;
 
-  GlobalInfo.fromJson(Map<String, dynamic> json) {
-    cases = json['cases'];
-    deaths = json['deaths'];
-    recovered = json['recovered'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['cases'] = this.cases;
-    data['deaths'] = this.deaths;
-    data['recovered'] = this.recovered;
-    return data;
-  }
-}
-
-class GlobalInfoPercentageModel {
-  double? deathPercentage;
-  double? activePercentage;
-  double? recoveryPercentage;
-
-  GlobalInfoPercentageModel({
-    this.activePercentage,
-    this.deathPercentage,
-    this.recoveryPercentage,
+  GlobalInfoModel({
+    required this.cases,
+    required this.deaths,
+    required this.recovered,
   });
+
+  factory GlobalInfoModel.fromJson(Map<String, dynamic> json) => GlobalInfoModel(
+        cases: json['cases'] as int? ?? 0,
+        deaths: json['deaths'] as int? ?? 0,
+        recovered: json['recovered'] as int? ?? 0,
+      );
+
+  GlobalInfo toDomain() => GlobalInfo(
+        cases: cases,
+        deaths: deaths,
+        recovered: recovered,
+      );
 }

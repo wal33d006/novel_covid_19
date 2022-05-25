@@ -44,23 +44,6 @@ class CountryModel {
         testsPerOneMillion: json['testsPerOneMillion'] as int? ?? 0,
       );
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['country'] = this.country;
-    data['cases'] = this.cases;
-    data['todayCases'] = this.todayCases;
-    data['deaths'] = this.deaths;
-    data['todayDeaths'] = this.todayDeaths;
-    data['recovered'] = this.recovered;
-    data['active'] = this.active;
-    data['critical'] = this.critical;
-    data['casesPerOneMillion'] = this.casesPerOneMillion;
-    data['deathsPerOneMillion'] = this.deathsPerOneMillion;
-    data['totalTests'] = this.totalTests;
-    data['testsPerOneMillion'] = this.testsPerOneMillion;
-    return data;
-  }
-
   CountryDetail toDomain() => CountryDetail(
         country: country,
         cases: cases,
