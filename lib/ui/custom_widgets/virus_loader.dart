@@ -12,7 +12,7 @@ class VirusLoader extends StatelessWidget {
               image: AssetImage(
                 'assets/loader.png',
               ),
-              color: Theme.of(context).accentColor,
+              color: Theme.of(context).colorScheme.onPrimary,
             )),
       ),
     );

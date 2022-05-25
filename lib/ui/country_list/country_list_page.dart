@@ -68,16 +68,18 @@ class _CountryListPageState extends State<CountryListPage> {
                       child: TextFormField(
                         focusNode: _focusNode,
                         controller: _controller,
+                        style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+                        cursorColor: Theme.of(context).colorScheme.onPrimary,
                         decoration: InputDecoration(
-                            prefixIcon: Icon(
-                              Icons.search,
-                              color: Theme.of(context).accentColor,
-                            ),
+                            prefixIcon: Icon(Icons.search, color: Theme.of(context).colorScheme.onPrimary),
                             border: OutlineInputBorder(),
-                            focusedBorder:
-                                OutlineInputBorder(borderSide: BorderSide(color: Theme.of(context).accentColor)),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Theme.of(context).colorScheme.onPrimary,
+                              ),
+                            ),
                             labelText: 'Search',
-                            labelStyle: TextStyle(color: Theme.of(context).accentColor),
+                            labelStyle: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
                             hintText: 'Enter country name'),
                         onChanged: filterSearchResults,
                       ),
@@ -101,7 +103,12 @@ class _CountryListPageState extends State<CountryListPage> {
                               },
                               title: Row(
                                 children: <Widget>[
-                                  Text(country.country),
+                                  Text(
+                                    country.country,
+                                    style: TextStyle(
+                                      color: Theme.of(context).colorScheme.onPrimary,
+                                    ),
+                                  ),
                                 ],
                               ),
                               subtitle: Text('Cases: ' + formatNumber(country.cases.toDouble())),

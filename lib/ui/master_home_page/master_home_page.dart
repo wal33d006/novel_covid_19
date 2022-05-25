@@ -43,85 +43,72 @@ class _MasterHomePageState extends State<MasterHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Observer(
-      builder: (context) {
-        return Scaffold(
-          appBar: AppBar(
-            title: Text(
-              model.appBarTitle,
-              style: TextStyle(color: Theme.of(context).accentColor),
-            ),
-            leading: IconButton(
-              icon: Icon(Icons.wb_incandescent),
-              color: Theme.of(context).accentColor,
-              onPressed: presenter.onBulbPressed,
-            ),
-            actions: <Widget>[
-              Switch(
-                onChanged: presenter.onThemeChanged,
-                activeColor: Theme.of(context).accentColor,
-                value: model.isDarkTheme,
-              ),
-            ],
+    return Observer(builder: (context) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text(
+            model.appBarTitle,
           ),
-          body: Row(
-            children: [
-              AnimatedCrossFade(
-                crossFadeState: model.showNavigationRail ? CrossFadeState.showSecond : CrossFadeState.showFirst,
-                duration: Duration(milliseconds: 300),
-                firstChild: Container(),
-                secondChild: NavigationRail(
-                  selectedIndex: model.currentIndex,
-                  onDestinationSelected: presenter.onNavigationUpdated,
-                  labelType: NavigationRailLabelType.selected,
-                  destinations: [
-                    NavigationRailDestination(
-                      icon: Icon(Icons.public),
-                      selectedIcon: Icon(
-                        Icons.public,
-                        color: Theme.of(context).accentColor,
-                      ),
-                      label: Text(
-                        'Global',
-                        style: TextStyle(
-                          color: Theme.of(context).accentColor,
-                        ),
-                      ),
-                    ),
-                    NavigationRailDestination(
-                      icon: Icon(Icons.list),
-                      selectedIcon: Icon(
-                        Icons.list,
-                        color: Theme.of(context).accentColor,
-                      ),
-                      label: Text(
-                        'Countries',
-                        style: TextStyle(
-                          color: Theme.of(context).accentColor,
-                        ),
-                      ),
-                    ),
-                    NavigationRailDestination(
-                      icon: Icon(Icons.info),
-                      selectedIcon: Icon(
-                        Icons.info,
-                        color: Theme.of(context).accentColor,
-                      ),
-                      label: Text(
-                        'About',
-                        style: TextStyle(
-                          color: Theme.of(context).accentColor,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(child: _widgets.elementAt(model.currentIndex)),
-            ],
+          leading: IconButton(
+            icon: Icon(Icons.wb_incandescent),
+            onPressed: presenter.onBulbPressed,
           ),
-        );
-      }
-    );
+          actions: <Widget>[
+            Switch(
+              onChanged: presenter.onThemeChanged,
+              activeColor: Theme.of(context).colorScheme.onPrimary,
+              value: model.isDarkTheme,
+            ),
+          ],
+        ),
+        body: Row(
+          children: [
+            AnimatedCrossFade(
+              crossFadeState: model.showNavigationRail ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+              duration: Duration(milliseconds: 300),
+              firstChild: Container(),
+              secondChild: NavigationRail(
+                selectedIndex: model.currentIndex,
+                onDestinationSelected: presenter.onNavigationUpdated,
+                labelType: NavigationRailLabelType.selected,
+                destinations: [
+                  NavigationRailDestination(
+                    icon: Icon(Icons.public, color: Theme.of(context).colorScheme.onError),
+                    selectedIcon: Icon(Icons.public, color: Theme.of(context).colorScheme.onPrimary),
+                    label: Text(
+                      'Global',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onPrimary,
+                      ),
+                    ),
+                  ),
+                  NavigationRailDestination(
+                    icon: Icon(Icons.list, color: Theme.of(context).colorScheme.onError),
+                    selectedIcon: Icon(Icons.list, color: Theme.of(context).colorScheme.onPrimary),
+                    label: Text(
+                      'Countries',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onPrimary,
+                      ),
+                    ),
+                  ),
+                  NavigationRailDestination(
+                    icon: Icon(Icons.info, color: Theme.of(context).colorScheme.onError),
+                    selectedIcon: Icon(Icons.info, color: Theme.of(context).colorScheme.onPrimary),
+                    label: Text(
+                      'About',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onPrimary,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(child: _widgets.elementAt(model.currentIndex)),
+          ],
+        ),
+      );
+    });
   }
 }

@@ -15,7 +15,7 @@ class PersonalInfoPage extends StatelessWidget {
                   children: <Widget>[
                     CircleAvatar(
                       radius: 93.0,
-                      backgroundColor: Theme.of(context).accentColor,
+                      backgroundColor: Theme.of(context).colorScheme.onPrimary,
                       child: CircleAvatar(
                         radius: 90.0,
                         backgroundImage: NetworkImage(
@@ -26,7 +26,7 @@ class PersonalInfoPage extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 8.0),
                       child: Text(
                         'Waleed Arshad',
-                        style: Theme.of(context).textTheme.headline5?.copyWith(color: Theme.of(context).accentColor),
+                        style: Theme.of(context).textTheme.headline5,
                         textAlign: TextAlign.center,
                       ),
                     ),

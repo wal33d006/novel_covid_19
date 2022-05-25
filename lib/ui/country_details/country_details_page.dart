@@ -33,19 +33,17 @@ class _CountryDetailsPageState extends State<CountryDetailsPage> {
       appBar: AppBar(
         title: Text(
           country.country,
-          style: TextStyle(color: Theme.of(context).accentColor),
         ),
         leading: GestureDetector(
           onTap: () => Navigator.of(context).pop(),
           child: Icon(
             Icons.arrow_back,
-            color: Theme.of(context).accentColor,
           ),
         ),
         actions: <Widget>[
           Switch(
             onChanged: presenter.onThemeChanged,
-            activeColor: Theme.of(context).accentColor,
+            activeColor: Theme.of(context).colorScheme.onPrimary,
             value: model.isDarkTheme,
           ),
         ],
@@ -67,12 +65,12 @@ class _CountryDetailsPageState extends State<CountryDetailsPage> {
                             'Set as Home country',
                             textAlign: TextAlign.center,
                             style: Theme.of(context).textTheme.subtitle2?.copyWith(
-                                  color: Theme.of(context).primaryColor,
+                                  color: Theme.of(context).colorScheme.primary,
                                 ),
                           ),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.0),
-                            color: Theme.of(context).accentColor,
+                            color: Theme.of(context).colorScheme.onPrimary,
                           ),
                         ),
                       ),
