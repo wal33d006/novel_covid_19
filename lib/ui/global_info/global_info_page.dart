@@ -90,7 +90,7 @@ class _GlobalInfoPageState extends State<GlobalInfoPage> {
                         title: Text('Death percentage'),
                         trailing: Text(
                           info.deathPercentageString + ' %',
-                          style: TextStyle(color: Theme.of(context).accentColor, fontWeight: FontWeight.bold),
+                          style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
@@ -104,7 +104,7 @@ class _GlobalInfoPageState extends State<GlobalInfoPage> {
                         title: Text('Recovery percentage'),
                         trailing: Text(
                           info.recoveryPercentageString + ' %',
-                          style: TextStyle(color: Theme.of(context).accentColor, fontWeight: FontWeight.bold),
+                          style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),

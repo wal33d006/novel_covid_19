@@ -67,42 +67,51 @@ class _MasterHomePageState extends State<MasterHomePage> {
               crossFadeState: model.showNavigationRail ? CrossFadeState.showSecond : CrossFadeState.showFirst,
               duration: Duration(milliseconds: 300),
               firstChild: Container(),
-              secondChild: NavigationRail(
-                selectedIndex: model.currentIndex,
-                onDestinationSelected: presenter.onNavigationUpdated,
-                labelType: NavigationRailLabelType.selected,
-                destinations: [
-                  NavigationRailDestination(
-                    icon: Icon(Icons.public, color: Theme.of(context).colorScheme.onError),
-                    selectedIcon: Icon(Icons.public, color: Theme.of(context).colorScheme.onPrimary),
-                    label: Text(
-                      'Global',
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.onPrimary,
-                      ),
+              secondChild: Container(
+                color: Theme.of(context).colorScheme.background,
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.height / 2,
+                    child: NavigationRail(
+                      selectedIndex: model.currentIndex,
+                      onDestinationSelected: presenter.onNavigationUpdated,
+                      labelType: NavigationRailLabelType.selected,
+                      destinations: [
+                        NavigationRailDestination(
+                          icon: Icon(Icons.public, color: Theme.of(context).colorScheme.onError),
+                          selectedIcon: Icon(Icons.public, color: Theme.of(context).colorScheme.onPrimary),
+                          label: Text(
+                            'Global',
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.onPrimary,
+                            ),
+                          ),
+                        ),
+                        NavigationRailDestination(
+                          icon: Icon(Icons.list, color: Theme.of(context).colorScheme.onError),
+                          selectedIcon: Icon(Icons.list, color: Theme.of(context).colorScheme.onPrimary),
+                          label: Text(
+                            'Countries',
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.onPrimary,
+                            ),
+                          ),
+                        ),
+                        NavigationRailDestination(
+                          icon: Icon(Icons.info, color: Theme.of(context).colorScheme.onError),
+                          selectedIcon: Icon(Icons.info, color: Theme.of(context).colorScheme.onPrimary),
+                          label: Text(
+                            'About',
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.onPrimary,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  NavigationRailDestination(
-                    icon: Icon(Icons.list, color: Theme.of(context).colorScheme.onError),
-                    selectedIcon: Icon(Icons.list, color: Theme.of(context).colorScheme.onPrimary),
-                    label: Text(
-                      'Countries',
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.onPrimary,
-                      ),
-                    ),
-                  ),
-                  NavigationRailDestination(
-                    icon: Icon(Icons.info, color: Theme.of(context).colorScheme.onError),
-                    selectedIcon: Icon(Icons.info, color: Theme.of(context).colorScheme.onPrimary),
-                    label: Text(
-                      'About',
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.onPrimary,
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
             Expanded(child: _widgets.elementAt(model.currentIndex)),
