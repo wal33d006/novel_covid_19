@@ -34,6 +34,8 @@ class _MasterHomePageState extends State<MasterHomePage> {
 
     presenter.navigator.context = context;
 
+    presenter.init();
+
     _widgets = <Widget>[
       getIt<GlobalInfoPage>(param1: const GlobalInfoInitialParams()),
       getIt<CountryListPage>(param1: const CountryListInitialParams()),
