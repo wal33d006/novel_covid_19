@@ -1,0 +1,3 @@
+class CountryListInitialParams {
+  const CountryListInitialParams();
+}
