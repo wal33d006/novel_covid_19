@@ -1,4 +1,6 @@
-class CountryDetail {
+import 'package:equatable/equatable.dart';
+
+class CountryDetail extends Equatable {
   final String country;
   final int cases;
   final int todayCases;
@@ -27,6 +29,20 @@ class CountryDetail {
     required this.testsPerOneMillion,
   });
 
+  const CountryDetail.empty()
+      : country = '',
+        cases = 0,
+        todayCases = 0,
+        deaths = 0,
+        todayDeaths = 0,
+        recovered = 0,
+        active = 0,
+        critical = 0,
+        casesPerOneMillion = 0,
+        deathsPerOneMillion = 0,
+        totalTests = 0,
+        this.testsPerOneMillion = 0;
+
   String get recoveryPercentageString => recoveryPercentage.toStringAsFixed(2);
 
   double get recoveryPercentage => (recovered / cases) * 100;
@@ -36,4 +52,7 @@ class CountryDetail {
   double get deathPercentage => (deaths / cases) * 100;
 
   String get activePercentageString => (100 - (deathPercentage + recoveryPercentage)).toStringAsFixed(2);
+
+  @override
+  List<Object?> get props => [country];
 }

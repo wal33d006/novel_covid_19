@@ -1,4 +1,6 @@
-class GlobalInfo {
+import 'package:equatable/equatable.dart';
+
+class GlobalInfo extends Equatable {
   final int cases;
   final int deaths;
   final int recovered;
@@ -23,4 +25,7 @@ class GlobalInfo {
   double get deathPercentage => (deaths / cases) * 100;
 
   String get activePercentageString => (100 - (deathPercentage + recoveryPercentage)).toStringAsFixed(2);
+
+  @override
+  List<Object?> get props => [cases, deaths, recovered];
 }

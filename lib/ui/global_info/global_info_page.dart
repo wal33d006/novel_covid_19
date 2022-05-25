@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:novel_covid_19/domain/entities/country_detail.dart';
 import 'package:novel_covid_19/ui/custom_widgets/statistic_card.dart';
 import 'package:novel_covid_19/ui/custom_widgets/virus_loader.dart';
 import 'package:novel_covid_19/domain/entities/global_info.dart';
 import 'package:novel_covid_19/ui/global_info/global_info_presentation_model.dart';
 import 'package:novel_covid_19/ui/global_info/global_info_presenter.dart';
+import 'package:novel_covid_19/utils/amount_formatter.dart';
 
 class GlobalInfoPage extends StatefulWidget {
   final GlobalInfoPresenter presenter;
@@ -25,6 +27,8 @@ class _GlobalInfoPageState extends State<GlobalInfoPage> {
 
   GlobalInfo get info => model.globalInfo;
 
+  CountryDetail get selectedCountry => model.selectedCountry;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -41,6 +45,24 @@ class _GlobalInfoPageState extends State<GlobalInfoPage> {
             ? VirusLoader()
             : ListView(
                 children: <Widget>[
+                  if (selectedCountry.country.isNotEmpty)
+                    ListTile(
+                        leading: CircleAvatar(
+                          child: Icon(
+                            Icons.home,
+                            color: Theme.of(context).accentColor,
+                          ),
+                        ),
+                        title: Text(selectedCountry.country),
+                        subtitle: Text(
+                          formatNumber(selectedCountry.cases.toDouble()) +
+                              '--' +
+                              formatNumber(
+                                selectedCountry.deaths.toDouble(),
+                              ),
+                        ),
+                        trailing: Icon(Icons.arrow_right),
+                        onTap: () => presenter.onSelectedCountryTapped(selectedCountry)),
                   StatisticCard(
                     color: Colors.orange,
                     text: 'Total cases',

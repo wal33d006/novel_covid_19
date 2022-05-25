@@ -5,7 +5,7 @@ import 'package:novel_covid_19/ui/country_details/country_details_initial_params
 abstract class CountryDetailsViewModel {
   CountryDetail get countryDetail;
 
-  bool get isHomeCountry;
+  CountryDetail get selectedCountry;
 
   bool get isDarkTheme;
 }
@@ -20,8 +20,7 @@ class CountryDetailsPresentationModel with CountryDetailsPresentationModelBase i
   CountryDetail get countryDetail => initialParams.countryDetail;
 
   @override
-  // TODO: implement isHomeCountry
-  bool get isHomeCountry => throw UnimplementedError();
+  CountryDetail get selectedCountry => _settingsStore.selectedCountry;
 
   @override
   bool get isDarkTheme => _settingsStore.isDarkTheme;

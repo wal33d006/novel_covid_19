@@ -27,10 +27,12 @@ class CountryListPresentationModel with CountryListPresentationModelBase impleme
 }
 
 abstract class CountryListPresentationModelBase {
+  //////////////////////////////////////////////////////////////
   final Observable<List<CountryDetail>> _countries = Observable(ObservableList());
 
   set countries(List<CountryDetail> value) => Action(() => _countries.value = value)();
 
+  //////////////////////////////////////////////////////////////
   final Observable<ObservableFuture<Either<GetCountryListFailure, List<CountryDetail>>>?> _getCountryListFuture =
       Observable(null);
 

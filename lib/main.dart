@@ -9,6 +9,7 @@ import 'package:novel_covid_19/domain/stores/settings_store.dart';
 import 'package:novel_covid_19/domain/use_cases/get_country_list_use_case.dart';
 import 'package:novel_covid_19/domain/use_cases/get_global_info_use_case.dart';
 import 'package:novel_covid_19/domain/use_cases/get_theme_use_case.dart';
+import 'package:novel_covid_19/domain/use_cases/set_selected_country_use_case.dart';
 import 'package:novel_covid_19/domain/use_cases/update_theme_use_case.dart';
 import 'package:novel_covid_19/global.dart';
 import 'package:novel_covid_19/navigation/app_navigator.dart';
@@ -83,6 +84,9 @@ void _initDependencies() {
     ..registerFactory<GetCountryListUseCase>(
       () => GetCountryListUseCase(getIt()),
     )
+    ..registerFactory<SetSelectedCountryUseCase>(
+      () => SetSelectedCountryUseCase(getIt()),
+    )
     ..registerFactory<UpdateThemeUseCase>(
       () => UpdateThemeUseCase(getIt(), getIt()),
     )
@@ -121,6 +125,7 @@ void _initDependencies() {
         getIt(param1: params),
         getIt(),
         getIt(),
+        getIt(),
       ),
     )
     ..registerFactoryParam<CountryDetailsPage, CountryDetailsInitialParams, dynamic>(
@@ -132,7 +137,7 @@ void _initDependencies() {
       () => GlobalInfoNavigator(getIt()),
     )
     ..registerFactoryParam<GlobalInfoPresentationModel, GlobalInfoInitialParams, dynamic>(
-      (_params, _) => GlobalInfoPresentationModel(_params),
+      (_params, _) => GlobalInfoPresentationModel(_params, getIt()),
     )
     ..registerFactoryParam<GlobalInfoPresenter, GlobalInfoInitialParams, dynamic>(
       (params, _) => GlobalInfoPresenter(
