@@ -8,6 +8,8 @@ import 'package:novel_covid_19/ui/country_list/country_list_initial_params.dart'
 abstract class CountryListViewModel {
   List<CountryDetail> get countries;
 
+  List<CountryDetail> get searchItems;
+
   bool get isLoading;
 }
 
@@ -17,20 +19,23 @@ class CountryListPresentationModel with CountryListPresentationModelBase impleme
   final CountryListInitialParams initialParams;
 
   @override
-  List<CountryDetail> get countries => _countries.value;
+  ObservableList<CountryDetail> get countries => _countries.value;
 
   ObservableFuture<Either<GetCountryListFailure, List<CountryDetail>>>? get getCountryListFuture =>
       _getCountryListFuture.value;
 
   @override
   bool get isLoading => isFutureInProgress(getCountryListFuture);
+
+  @override
+  ObservableList<CountryDetail> get searchItems => _searchItems.value;
 }
 
 abstract class CountryListPresentationModelBase {
   //////////////////////////////////////////////////////////////
-  final Observable<List<CountryDetail>> _countries = Observable(ObservableList());
+  final Observable<ObservableList<CountryDetail>> _countries = Observable(ObservableList());
 
-  set countries(List<CountryDetail> value) => Action(() => _countries.value = value)();
+  set countries(ObservableList<CountryDetail> value) => Action(() => _countries.value = value)();
 
   //////////////////////////////////////////////////////////////
   final Observable<ObservableFuture<Either<GetCountryListFailure, List<CountryDetail>>>?> _getCountryListFuture =
@@ -38,4 +43,9 @@ abstract class CountryListPresentationModelBase {
 
   set getCountryListFuture(ObservableFuture<Either<GetCountryListFailure, List<CountryDetail>>>? value) =>
       Action(() => _getCountryListFuture.value = value)();
+
+  //////////////////////////////////////////////////////////////
+  final Observable<ObservableList<CountryDetail>> _searchItems = Observable(ObservableList());
+
+  set searchItems(ObservableList<CountryDetail> value) => Action(() => _searchItems.value = value)();
 }

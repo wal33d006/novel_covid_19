@@ -24,8 +24,33 @@ class CountryListPresenter {
 
   Future<void> init() async {
     _model.getCountryListFuture = _getCountryListUseCase.execute().observableDoOn(
-          (fail) => navigator.showError(fail.displayableFailure()),
-          (list) => _model.countries = list,
-        );
+      (fail) => navigator.showError(fail.displayableFailure()),
+      (list) {
+        _model.searchItems.addAll(list);
+        _model.countries.addAll(list);
+      },
+    );
+  }
+
+  void onSearchChanged(String query) {
+    var searchItems = _model.searchItems;
+    List<CountryDetail> dummySearchList = <CountryDetail>[];
+    dummySearchList.addAll(_model.countries);
+    if (query.isNotEmpty) {
+      List<CountryDetail> dummyListData = <CountryDetail>[];
+      dummySearchList.forEach((item) {
+        if (item.country.toLowerCase().contains(query.toLowerCase())) {
+          dummyListData.add(item);
+        }
+      });
+
+      searchItems.clear();
+      searchItems.addAll(dummyListData);
+
+      return;
+    } else {
+      searchItems.clear();
+      searchItems.addAll(_model.countries);
+    }
   }
 }

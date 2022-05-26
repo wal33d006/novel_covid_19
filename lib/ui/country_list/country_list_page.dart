@@ -31,29 +31,6 @@ class _CountryListPageState extends State<CountryListPage> {
     presenter.init();
   }
 
-  void filterSearchResults(String query) {
-    List<CountryDetail> dummySearchList = <CountryDetail>[];
-    dummySearchList.addAll(model.countries);
-    if (query.isNotEmpty) {
-      List<CountryDetail> dummyListData = <CountryDetail>[];
-      dummySearchList.forEach((item) {
-        if (item.country.toLowerCase().contains(query.toLowerCase())) {
-          dummyListData.add(item);
-        }
-      });
-      setState(() {
-        items.clear();
-        items.addAll(dummyListData);
-      });
-      return;
-    } else {
-      setState(() {
-        items.clear();
-        items.addAll(model.countries);
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,25 +48,26 @@ class _CountryListPageState extends State<CountryListPage> {
                         style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
                         cursorColor: Theme.of(context).colorScheme.onPrimary,
                         decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.search, color: Theme.of(context).colorScheme.onPrimary),
-                            border: OutlineInputBorder(),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Theme.of(context).colorScheme.onPrimary,
-                              ),
+                          prefixIcon: Icon(Icons.search, color: Theme.of(context).colorScheme.onPrimary),
+                          border: OutlineInputBorder(),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Theme.of(context).colorScheme.onPrimary,
                             ),
-                            labelText: 'Search',
-                            labelStyle: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
-                            hintText: 'Enter country name'),
-                        onChanged: filterSearchResults,
+                          ),
+                          labelText: 'Search',
+                          labelStyle: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+                          hintText: 'Enter country name',
+                        ),
+                        onChanged: presenter.onSearchChanged,
                       ),
                     ),
                   ),
                   Expanded(
                     child: ListView.builder(
-                      itemCount: model.countries.length,
+                      itemCount: model.searchItems.length,
                       itemBuilder: (context, index) {
-                        var country = model.countries[index];
+                        var country = model.searchItems[index];
                         return Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           child: Card(
@@ -97,7 +75,7 @@ class _CountryListPageState extends State<CountryListPage> {
                             child: ListTile(
                               onTap: () {
                                 _controller.clear();
-                                filterSearchResults('');
+                                presenter.onSearchChanged('');
                                 _focusNode.unfocus();
                                 presenter.onItemTapped(country);
                               },
@@ -133,28 +111,4 @@ class _CountryListPageState extends State<CountryListPage> {
       ),
     );
   }
-
-// void _fetchCountries() async {
-//   try {
-//     setState(() => _isLoading = true);
-//     var list = await mySharedPreferences.fetchHomeCountry();
-//     var countries = await api.getAllCountriesInfo();
-//     setState(() {
-//       _countries = countries;
-//       items.addAll(_countries!);
-//       if (list != null)
-//         setState(() {
-//           _homeCountry = HomeCountry(
-//             name: list[0],
-//             cases: list[1],
-//             deaths: list[2],
-//           );
-//         });
-//     });
-//   } catch (ex) {
-//     setState(() => _countries = null);
-//   } finally {
-//     setState(() => _isLoading = false);
-//   }
-// }
 }
