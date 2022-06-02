@@ -4,7 +4,7 @@ import 'package:novel_covid_19/ui/custom_widgets/virus_loader.dart';
 import 'package:novel_covid_19/domain/entities/country_detail.dart';
 import 'package:novel_covid_19/ui/country_list/country_list_presentation_model.dart';
 import 'package:novel_covid_19/ui/country_list/country_list_presenter.dart';
-import 'package:novel_covid_19/utils/amount_formatter.dart';
+import 'package:novel_covid_19/domain/utils/amount_formatter.dart';
 
 class CountryListPage extends StatefulWidget {
   const CountryListPage({required this.presenter});

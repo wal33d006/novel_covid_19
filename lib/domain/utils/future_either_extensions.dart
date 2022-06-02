@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:mobx/mobx.dart';
-import 'package:novel_covid_19/utils/dartz_extensions.dart';
+import 'package:novel_covid_19/domain/utils/dartz_extensions.dart';
 
 extension FutureEither<L, R> on Future<Either<L, R>> {
   Future<Either<L, R2>> flatMap<R2>(Function1<R, Future<Either<L, R2>>> f) {

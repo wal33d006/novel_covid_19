@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:novel_covid_19/utils/amount_formatter.dart';
+import 'package:novel_covid_19/domain/utils/amount_formatter.dart';
 
 import '../../global.dart';
 

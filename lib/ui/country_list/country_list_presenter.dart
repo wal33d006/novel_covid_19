@@ -1,6 +1,6 @@
 import 'package:novel_covid_19/domain/entities/country_detail.dart';
 import 'package:novel_covid_19/domain/use_cases/get_country_list_use_case.dart';
-import 'package:novel_covid_19/utils/future_either_extensions.dart';
+import 'package:novel_covid_19/domain/utils/future_either_extensions.dart';
 import 'package:novel_covid_19/ui/country_details/country_details_initial_params.dart';
 import 'package:novel_covid_19/ui/country_list/country_list_navigator.dart';
 import 'package:novel_covid_19/ui/country_list/country_list_presentation_model.dart';

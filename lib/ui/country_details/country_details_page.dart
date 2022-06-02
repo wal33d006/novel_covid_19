@@ -40,11 +40,14 @@ class _CountryDetailsPageState extends State<CountryDetailsPage> {
             Icons.arrow_back,
           ),
         ),
-        actions: <Widget>[
-          Switch(
-            onChanged: presenter.onThemeChanged,
-            activeColor: Theme.of(context).colorScheme.onPrimary,
-            value: model.isDarkTheme,
+        actions: [
+          Observer(
+            builder: (context) {
+              return Switch(
+                value: model.isDarkTheme,
+                onChanged: presenter.onThemeUpdated,
+              );
+            },
           ),
         ],
       ),

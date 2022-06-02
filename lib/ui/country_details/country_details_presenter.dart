@@ -19,7 +19,7 @@ class CountryDetailsPresenter {
 
   CountryDetailsViewModel get viewModel => _model;
 
-  void onThemeChanged(bool value) => _updateThemeUseCase.execute(isDarkTheme: value);
+  void onThemeUpdated(bool value) => _updateThemeUseCase.execute(isDarkTheme: value);
 
   void onSetSelectedCountry(CountryDetail country) => _selectedCountryUseCase.execute(selectedCountry: country);
 }

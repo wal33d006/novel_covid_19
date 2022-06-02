@@ -6,7 +6,7 @@ import 'package:novel_covid_19/ui/custom_widgets/virus_loader.dart';
 import 'package:novel_covid_19/domain/entities/global_info.dart';
 import 'package:novel_covid_19/ui/global_info/global_info_presentation_model.dart';
 import 'package:novel_covid_19/ui/global_info/global_info_presenter.dart';
-import 'package:novel_covid_19/utils/amount_formatter.dart';
+import 'package:novel_covid_19/domain/utils/amount_formatter.dart';
 
 class GlobalInfoPage extends StatefulWidget {
   final GlobalInfoPresenter presenter;

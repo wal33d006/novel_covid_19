@@ -4,7 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:http/http.dart';
 import 'package:novel_covid_19/data/covid/covid_rest_api_respository.dart';
 import 'package:novel_covid_19/data/local/insecure_data_storage.dart';
-import 'package:novel_covid_19/domain/stores/local_store.dart';
+import 'package:novel_covid_19/domain/stores/local_storage.dart';
 import 'package:novel_covid_19/domain/stores/settings_store.dart';
 import 'package:novel_covid_19/domain/use_cases/get_country_list_use_case.dart';
 import 'package:novel_covid_19/domain/use_cases/get_global_info_use_case.dart';

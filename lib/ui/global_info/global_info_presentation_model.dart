@@ -4,7 +4,7 @@ import 'package:novel_covid_19/domain/entities/country_detail.dart';
 import 'package:novel_covid_19/domain/entities/failures/get_global_info_failure.dart';
 import 'package:novel_covid_19/domain/entities/global_info.dart';
 import 'package:novel_covid_19/domain/stores/settings_store.dart';
-import 'package:novel_covid_19/utils/future_either_extensions.dart';
+import 'package:novel_covid_19/domain/utils/future_either_extensions.dart';
 import 'package:novel_covid_19/ui/global_info/global_info_initial_params.dart';
 
 abstract class GlobalInfoViewModel {

@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:novel_covid_19/domain/entities/failures/local_storage_failure.dart';
-import 'package:novel_covid_19/domain/stores/local_store.dart';
+import 'package:novel_covid_19/domain/stores/local_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 typedef SharedPrefsProvider = Future<SharedPreferences> Function();
