@@ -92,3 +92,17 @@ class InsecureDataStorage implements LocalStorage {
     }
   }
 }
+
+class SharedPreferencesProvider {
+  Future<String> readString(String key) async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString(key) ?? '';
+  }
+
+  Future<void> writeString(String key, String value) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(key, value);
+  }
+
+  // Create more read/write functions as per your requirement and use this class's instance inside providers
+}

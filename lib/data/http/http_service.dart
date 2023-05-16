@@ -9,6 +9,8 @@ class HttpService {
   Future<String> get(String url) async {
     Uri uri = Uri.parse(url);
     var response = await _client.get(uri);
+    print(response.statusCode);
+    print(response.body);
     checkAndThrowError(response);
     return response.body;
   }

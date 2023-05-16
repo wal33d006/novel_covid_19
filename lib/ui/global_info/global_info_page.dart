@@ -50,7 +50,7 @@ class _GlobalInfoPageState extends State<GlobalInfoPage> {
                         leading: CircleAvatar(
                           child: Icon(
                             Icons.home,
-                            color: Theme.of(context).accentColor,
+                            color: Theme.of(context).colorScheme.primary,
                           ),
                         ),
                         title: Text(selectedCountry.country),

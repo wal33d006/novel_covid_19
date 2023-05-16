@@ -67,7 +67,7 @@ class _CountryDetailsPageState extends State<CountryDetailsPage> {
                           child: Text(
                             'Set as Home country',
                             textAlign: TextAlign.center,
-                            style: Theme.of(context).textTheme.subtitle2?.copyWith(
+                            style: Theme.of(context).textTheme.titleSmall?.copyWith(
                                   color: Theme.of(context).colorScheme.primary,
                                 ),
                           ),
@@ -125,7 +125,7 @@ class _CountryDetailsPageState extends State<CountryDetailsPage> {
                     title: Text('Death percentage'),
                     trailing: Text(
                       country.deathPercentageString + ' %',
-                      style: TextStyle(color: Theme.of(context).accentColor, fontWeight: FontWeight.bold),
+                      style: TextStyle(color: Theme.of(context).colorScheme.primary, fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
@@ -139,7 +139,7 @@ class _CountryDetailsPageState extends State<CountryDetailsPage> {
                     title: Text('Recovery percentage'),
                     trailing: Text(
                       country.recoveryPercentageString + ' %',
-                      style: TextStyle(color: Theme.of(context).accentColor, fontWeight: FontWeight.bold),
+                      style: TextStyle(color: Theme.of(context).colorScheme.primary, fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
@@ -155,7 +155,7 @@ class _CountryDetailsPageState extends State<CountryDetailsPage> {
     return Center(
       child: Text(
         'Unable to fetch data',
-        style: Theme.of(context).textTheme.headline6?.copyWith(color: Colors.grey),
+        style: Theme.of(context).textTheme.titleLarge?.copyWith(color: Colors.grey),
       ),
     );
   }
