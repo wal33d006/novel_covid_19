@@ -19,8 +19,10 @@ jobs:
           channel: stable
       - run: flutter pub get
       - run: flutter build web --release
+      - run: cp -R build/web/* public/
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
+          args: deploy --only hosting
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_NOVEL_COVID_19 }}'
           channelId: live
