@@ -18,7 +18,6 @@ jobs:
         with:
           channel: stable
       - run: flutter pub get
-      - run: flutter pub run build_runner build
       - run: flutter build web --release
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
