@@ -8,7 +8,6 @@ name: Deploy to Firebase Hosting on merge
       - master
 jobs:
   build_and_deploy:
-    if: ${{ github.event.label.name == 'deploy' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
