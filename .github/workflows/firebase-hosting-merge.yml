@@ -4,11 +4,12 @@
 name: Deploy to Firebase Hosting on merge
 'on':
   pull_request:
+    types: [labeled]
     branches:
       - master
 jobs:
   build_and_deploy:
-    if: contains(github.event.pull_request.labels.*.name, 'skip QA') || (contains(github.event.pull_request.labels.*.name, 'skip QA') && contains(github.event.pull_request.labels.*.name, 'waiting for QA'))
+    if: ${{ (github.event.label.name == 'skip QA') || (github.event.label.name != 'skip QA' && github.event.label.name == 'waiting for QA') }}
     runs-on: ubuntu-latest 
     steps:
       - uses: actions/checkout@v2
